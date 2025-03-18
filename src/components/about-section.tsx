@@ -9,7 +9,7 @@ export default function AboutSection() {
       <div className="container mx-auto px-6 lg:px-16">
         {/* Heading */}
         <h2 className="text-3xl font-bold mb-4 text-[#0b0a46]">ABOUT US</h2>
-        <p className="max-w-2xl mx-auto mb-8 text-gray-600 leading-relaxed">
+        {/* <p className="max-w-2xl mx-auto mb-8 text-gray-600 leading-relaxed">
           Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque suscipit
           donec, tortor duis phasellus vivamus wisi placerat, pellentesque augue
           leo. Orci nullam, nonummy nam sed, sapien temporibus ac ac, velit ante
@@ -17,7 +17,7 @@ export default function AboutSection() {
           <span className="font-bold text-[#0b0a46]">
             We Help 22,4780 People
           </span>
-        </p>
+        </p> */}
 
         {/* Card Container */}
         <div className="grid md:grid-cols-3 gap-6 justify-center items-center">

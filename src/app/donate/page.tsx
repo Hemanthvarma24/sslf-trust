@@ -1,115 +1,85 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Heart, DollarSign, Calendar } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
-import { toast } from "sonner"
-
-interface FormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  address: string;
-  donationAmount: string;
-  customAmount: string;
-  donationFrequency: string;
-  purpose: string;
-  comments: string;
-}
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import toast from "react-hot-toast";
 
 export default function DonationForm() {
-  const [customAmountVisible, setCustomAmountVisible] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     fullName: "",
+    age: "",
+    address: "",
     email: "",
     phone: "",
-    address: "",
-    donationAmount: "",
-    customAmount: "",
-    donationFrequency: "oneTime",
-    purpose: "",
-    comments: "",
-  })
+    amount: "",
+    paymentMethod: "",
+    message: "",
+  });
 
-  const handleRadioChange = (name: keyof FormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    if (name === "donationAmount") setCustomAmountVisible(value === "custom")
-  }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleSelectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, paymentMethod: value }));
+  };
 
-  const handleSelectChange = (name: keyof FormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    // Show toast notification
+    toast.success(`Thank you, ${formData.fullName}, for your generous donation of ₹${formData.amount}.`);
 
-    try {
-      if (!formData.fullName || !formData.email || !formData.donationAmount) {
-        toast.error("Please fill in all required fields.")
-        return
-      }
-
-      if (formData.donationAmount === "custom" && (!formData.customAmount || Number(formData.customAmount) <= 0)) {
-        toast.error("Please enter a valid custom donation amount.")
-        return
-      }
-
-      toast.success("Thank you for your donation! Redirecting to payment page...")
-    } catch (error) {
-      toast.error("There was a problem processing your donation. Please try again.")
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+    // Optionally reset the form
+    setFormData({
+      fullName: "",
+      age: "",
+      address: "",
+      email: "",
+      phone: "",
+      amount: "",
+      paymentMethod: "",
+      message: "",
+    });
+  };
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-4 sm:py-8 px-4">
-      <Card className="border-0 shadow-2xl overflow-hidden">
-        <CardHeader className="bg-[#0b0a46] text-white rounded-t-lg p-6 sm:p-8">
-          <div className="flex items-center justify-center mb-3">
-            <Heart className="h-8 w-8 mr-2 animate-pulse" />
-          </div>
-          <CardTitle className="text-2xl sm:text-3xl font-bold text-center">Make a Donation</CardTitle>
-          <CardDescription className="text-blue-100 text-center text-sm sm:text-base">
-            Your generosity makes a difference
-          </CardDescription>
-        </CardHeader>
+    <div className="max-w-xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-22 pb-14 border border-gray-200">
+      <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">SSLF Charity Trust Donation</h2>
+      <p className="text-gray-600 text-center mb-6">
+        Your contribution can make a real difference in the lives of those in need.
+      </p>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <Input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} required />
+        <Input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} required />
+        <Textarea name="address" placeholder="Address" value={formData.address} onChange={handleChange} rows={3} required />
+        <Input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
+        <Input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
+        <Input type="number" name="amount" placeholder="Donation Amount (₹)" value={formData.amount} onChange={handleChange} required />
 
-        <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-6 pt-6 px-4 sm:px-6">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name *</Label>
-                <Input id="fullName" name="fullName" value={formData.fullName} onChange={handleInputChange} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
-                <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} required />
-              </div>
-            </div>
-          </CardContent>
+        <Select onValueChange={handleSelectChange} value={formData.paymentMethod} required>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select Payment Method" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="UPI">UPI</SelectItem>
+            <SelectItem value="Bank Transfer">Bank Transfer</SelectItem>
+            <SelectItem value="Credit/Debit Card">Credit/Debit Card</SelectItem>
+            <SelectItem value="Other">Other</SelectItem>
+          </SelectContent>
+        </Select>
 
-          <CardFooter>
-            <Button type="submit" disabled={isSubmitting} className="w-full">
-              {isSubmitting ? "Processing..." : "Complete Donation"}
-            </Button>
-          </CardFooter>
-        </form>
-      </Card>
+        <Textarea name="message" placeholder="Comments/Message (Optional)" value={formData.message} onChange={handleChange} rows={3} />
+
+        <Button type="submit" className="w-full bg-[#0b0a45] hover:bg-gray-400 text-white p-3 rounded-lg text-lg font-semibold transition">
+          Donate Now
+        </Button>
+      </form>
     </div>
-  )
+  );
 }

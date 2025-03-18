@@ -1,38 +1,51 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import herobg from "@/assets/homepage/steptodown.com759068.jpg";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import img1 from "@/assets/homepage/img1.jpg";
+import img2 from "@/assets/homepage/img2.jpg";
+import img3 from "@/assets/homepage/img3.jpg";
+import img4 from "@/assets/homepage/img4.jpg";
+import img5 from "@/assets/homepage/img5.jpg";
+import img6 from "@/assets/homepage/img6.jpg";
+
+const images = [img1, img2, img3, img4, img5, img6];
 
 export default function HeroSection() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: false,
+    fade: true,
+    cssEase: "linear",
+    pauseOnHover: false,
+  };
+
   return (
-    <section className="relative w-full h-150 flex items-center justify-center">
-      {/* Background Image */}
-      <div className="absolute inset-0 -z-10">
-        <Image
-          src={herobg}
-          alt="Hero Background"
-          layout="fill"
-          objectFit="cover"
-          quality={80}
-        />
-      </div>
-
-      {/* Content Section */}
-      <div className="container mx-auto px-6 lg:px-20 text-center md:text-left">
-        <div className="max-w-3xl">
-          <p className="text-white text-lg italic mb-2">
-            We Are Giving Help Form 1962
-          </p>
-          <h1 className="text-white text-3xl md:text-2xl lg:text-4xl font-bold leading-tight">
-            CLEAN-WATER SYSTEM FOR
-          </h1>
-          <h1 className="text-white text-3xl md:text-2xl lg:text-4xl font-bold leading-tight">
-            RURAL POOR
-          </h1>
-
-        </div>
-      </div>
+    <section className="relative w-full min-h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div key={index} className="relative w-full min-h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+            <Image
+              src={image}
+              alt={`Hero Slide ${index + 1}`}
+              layout="fill"
+              objectFit="cover"
+              quality={90}
+              priority
+              className="transition-opacity duration-700 ease-in-out"
+            />
+          </div>
+        ))}
+      </Slider>
     </section>
   );
 }

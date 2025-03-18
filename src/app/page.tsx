@@ -6,10 +6,9 @@ import NewsEventsSection from "@/components/news"
 import TestimonialsSection from "@/components/testimonials-section"
 import GallerySection from "@/components/gallery"
 
-
 export default function Home() {
   return (
-    <>
+    <div className="pt-14">
       <HeroSection />
       <AboutSection />
       <WhatWeDoSection />
@@ -17,7 +16,6 @@ export default function Home() {
       <ServicesSection />
       <TestimonialsSection />
       <GallerySection />
-    </>
+    </div>
   )
 }
-

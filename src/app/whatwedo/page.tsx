@@ -3,7 +3,7 @@ import { FaGraduationCap, FaHospital, FaTint, FaBullhorn, FaBriefcase } from "re
 
 const WhatWeDo = () => {
   return (
-    <div className="pb-8 px-4">
+    <div className="pb-8 px-4 pt-14">
       <div className="max-w-6xl mx-auto p-8 bg-white shadow-lg rounded-2xl mt-4">
         <h1 className="text-4xl font-bold text-center text-[#0b0a46] mb-10">
           What We Do
