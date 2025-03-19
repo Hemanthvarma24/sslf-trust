@@ -31,8 +31,7 @@ export default function EducationCollaboration() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-  
-    // Handle checkbox inputs separately by checking if the input is a checkbox
+
     if (e.target instanceof HTMLInputElement && e.target.type === "checkbox") {
       const checked = e.target.checked;
       setFormData((prev) => ({
@@ -48,14 +47,33 @@ export default function EducationCollaboration() {
       }));
     }
   };
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+
+    const whatsappMessage = `Educational Collaboration Inquiry:\n\n*Institution Name:* ${formData.institutionName}\n*Institution Type:* ${formData.institutionType}\n*Institution Address:* ${formData.institutionAddress}\n*Contact Person:* ${formData.contactPerson}\n*Designation:* ${formData.designation}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n\n*Collaboration Interests:*\n${formData.collaborationTypes.join(", ") || "N/A"}\n\n*Willing to Host Events:* ${formData.hostEvents}\n\n*Additional Comments:* ${formData.additionalComments || "N/A"}`;
+
+    const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappURL, "_blank");
+
+    alert("Your form has been submitted successfully.");
+
+    setFormData({
+      institutionName: "",
+      institutionType: "",
+      institutionAddress: "",
+      contactPerson: "",
+      designation: "",
+      email: "",
+      phone: "",
+      collaborationTypes: [],
+      hostEvents: "",
+      additionalComments: "",
+    });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center mt-18 pb-8 justify-center p-6">
+    <div className="min-h-screen bg-white flex items-center mt-18 pb-8 justify-center p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
         <h2 className="text-2xl font-bold text-center mb-6">
           Educational Institution Collaboration
@@ -71,6 +89,7 @@ export default function EducationCollaboration() {
             type="text"
             name="institutionName"
             placeholder="Institution Name"
+            value={formData.institutionName}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -84,6 +103,7 @@ export default function EducationCollaboration() {
                   type="radio"
                   name="institutionType"
                   value={option}
+                  checked={formData.institutionType === option}
                   onChange={handleChange}
                 />{" "}
                 {option}
@@ -94,6 +114,7 @@ export default function EducationCollaboration() {
           <textarea
             name="institutionAddress"
             placeholder="Institution Address"
+            value={formData.institutionAddress}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -102,6 +123,7 @@ export default function EducationCollaboration() {
             type="text"
             name="contactPerson"
             placeholder="Contact Person Name"
+            value={formData.contactPerson}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -110,6 +132,7 @@ export default function EducationCollaboration() {
             type="text"
             name="designation"
             placeholder="Designation"
+            value={formData.designation}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -118,6 +141,7 @@ export default function EducationCollaboration() {
             type="email"
             name="email"
             placeholder="Email Address"
+            value={formData.email}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -126,6 +150,7 @@ export default function EducationCollaboration() {
             type="tel"
             name="phone"
             placeholder="Phone Number"
+            value={formData.phone}
             required
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
@@ -148,6 +173,7 @@ export default function EducationCollaboration() {
                   type="checkbox"
                   name="collaborationTypes"
                   value={option}
+                  checked={formData.collaborationTypes.includes(option)}
                   onChange={handleChange}
                 />{" "}
                 {option}
@@ -161,7 +187,13 @@ export default function EducationCollaboration() {
             </legend>
             {["Yes", "No", "Maybe"].map((option) => (
               <label key={option} className="block">
-                <input type="radio" name="hostEvents" value={option} onChange={handleChange} />{" "}
+                <input
+                  type="radio"
+                  name="hostEvents"
+                  value={option}
+                  checked={formData.hostEvents === option}
+                  onChange={handleChange}
+                />{" "}
                 {option}
               </label>
             ))}
@@ -170,6 +202,7 @@ export default function EducationCollaboration() {
           <textarea
             name="additionalComments"
             placeholder="Additional Comments or Specific Interests"
+            value={formData.additionalComments}
             className="w-full p-3 border rounded-lg"
             onChange={handleChange}
           ></textarea>

@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { Phone, Mail } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,32 +27,34 @@ export default function Navbar() {
     }
   };
 
-
   const navigationItems = [
     { name: "HOME", href: "/", submenu: null },
     {
       name: "ABOUT US",
-      submenu: [
-        { name: "ABOUT SSLF", href: "/aboutus" },
-        { name: "VISION", href: "/aboutus" },
-        { name: "MISSION", href: "/aboutus" },
-      ],
+      href: "/aboutus",
+      // submenu: [
+      //   { name: "ABOUT SSLF", href: "/aboutus" },
+      //   { name: "VISION", href: "/aboutus" },
+      //   { name: "MISSION", href: "/aboutus" },
+      // ],
     },
     {
       name: "WHAT WE DO",
+      href: "/whatwedo",
       submenu: [
-        { name: "SCHOLARSHIP", href: "/whatwedo" },
-        { name: "MEDICAL CAMP", href: "/whatwedo" },
-        { name: "AWARENESS PROGRAM", href: "/whatwedo" },
-        { name: "TRAINING PROGRAM", href: "/whatwedo" },
-        { name: "DONATE PROGRAM", href: "/whatwedo" },
+        { name: "SCHOLARSHIP", href: "/whatwedo/scholarships" },
+        { name: "MEDICAL CAMP", href: "/whatwedo/medicalcamps" },
+        { name: "AWARENESS PROGRAM", href: "/whatwedo/awarenessprograms" },
+        { name: "VOCATIONAL TRAINING CENTER", href: "/whatwedo/training" },
+        { name: "DONATE PROGRAM", href: "/whatwedo/blooddonation" },
       ],
     },
+
     {
-      name: "BE A PART WITH US",
+      name: "BE PART OF US",
       submenu: [
-        { name: "DONATE", href: "/donate" },
         { name: "BE A VOLUNTEER", href: "/volunteer" },
+        { name: "DONATE", href: "/donate" },
         { name: "CORPORATE", href: "/corporate" },
         { name: "EDUCATION", href: "/education" },
       ],
@@ -68,8 +73,13 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link href="/" className="font-bold text-xl text-[#0b0a45]">
-            LOGO
+          <Link href="/">
+            <Image
+              src={logo}
+              alt="Logo"
+              width={150}
+              height={50}
+            />
           </Link>
         </motion.div>
 
@@ -92,14 +102,16 @@ export default function Navbar() {
               />
             )
           )}
-          <span className="bg-[#0b0a45] text-white px-4 py-2 rounded-md">
-            +91 98801 06799
+          <span className="text-gray font-bold px-4 py-2 rounded-md flex items-center gap-2">
+            <Phone size={18} />
+            9094099940
           </span>
           <a
-            href="mailto:sslf@gmail.com"
-            className="bg-[#0b0a45] text-white px-4 py-2 rounded-md hover:bg-orange-600 transition"
+            href="mailto:edu@sslftrust.com"
+            className="text-gray font-bold px-4 py-2 rounded-md flex items-center gap-2  transition"
           >
-            sslf@gmail.com
+            <Mail size={18} />
+            edu@sslftrust.com
           </a>
         </div>
 
@@ -199,8 +211,8 @@ export default function Navbar() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <a href="mailto:sslf@gmail.com" className="text-orange-400">
-                  sslf@gmail.com
+                <a href="mailto:edu@sslftrust.com" className="text-orange-400">
+                  edu@sslftrust.com
                 </a>
               </p>
               <p className="flex items-center py-1">
@@ -218,7 +230,7 @@ export default function Navbar() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                <span>+91 98801 06799</span>
+                <span>9094099940</span>
               </p>
             </div>
           </motion.div>
@@ -228,9 +240,17 @@ export default function Navbar() {
   );
 }
 
-function NavItem({ name, href, pathname }: { name: string; href: string; pathname: string }) {
+function NavItem({
+  name,
+  href,
+  pathname,
+}: {
+  name: string;
+  href: string;
+  pathname: string;
+}) {
   const isActive = pathname === href || pathname.startsWith(href + "/");
-  
+
   return (
     <Link
       href={href}
@@ -253,24 +273,28 @@ function NavItemWithDropdown({
   pathname: string;
 }) {
   // Check if any submenu item is active
-  const isActive = submenu.some(item => 
-    pathname === item.href || pathname.startsWith(item.href.split('#')[0])
+  const isActive = submenu.some(
+    (item) =>
+      pathname === item.href || pathname.startsWith(item.href.split("#")[0])
   );
-  
+
   return (
     <div className="relative group">
-      <button className={`text-sm font-bold hover:text-gray-500 transition-colors duration-200 ${
-        isActive ? "font-bold" : "text-[#0b0a45]"
-      }`}>
+      <button
+        className={`text-sm font-bold hover:text-gray-500 transition-colors duration-200 ${
+          isActive ? "font-bold" : "text-[#0b0a45]"
+        }`}
+      >
         {name}
       </button>
       <div className="absolute left-0 hidden group-hover:block bg-white shadow-md rounded-md py-2 w-48">
         {submenu.map((item) => {
-          const isItemActive = pathname === item.href || 
-                              (pathname.includes(item.href.split('#')[0]) && 
-                               item.href.includes('#') && 
-                               pathname.includes(item.href.split('#')[1]));
-          
+          const isItemActive =
+            pathname === item.href ||
+            (pathname.includes(item.href.split("#")[0]) &&
+              item.href.includes("#") &&
+              pathname.includes(item.href.split("#")[1]));
+
           return (
             <Link
               key={item.href}

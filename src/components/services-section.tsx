@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import Image from "next/image"
-import volunteer from "@/assets/BeApart/IMG-20250311-WA0093.jpg"
-import donate from "@/assets/BeApart/IMG-20250311-WA0095.jpg"
-import corporate from "@/assets/BeApart/IMG-20250311-WA0112.jpg"
-import education from "@/assets/BeApart/IMG-20250311-WA0116.jpg"
-import { X } from "lucide-react"
+import { useState } from "react";
+import Image from "next/image";
+import volunteer from "@/assets/BeApart/IMG-20250311-WA0093.jpg";
+import donate from "@/assets/BeApart/storyt02.jpeg";
+import corporate from "@/assets/BeApart/IMG-20250311-WA0112.jpg";
+import education from "@/assets/BeApart/IMG-20250311-WA0116.jpg";
+import { X } from "lucide-react";
 
 // Define types for our data structure
 interface Field {
-  name: string
-  label: string
-  type: string
-  options?: string[]
-  required?: boolean
-  conditional?: { field: string; value: string }
+  name: string;
+  label: string;
+  type: string;
+  options?: string[];
+  required?: boolean;
+  conditional?: { field: string; value: string };
 }
 
 interface Service {
-  name: string
-  image: any // using any for the imported image type
-  title: string
-  description: string
-  fields: Field[]
+  name: string;
+  image: any; // using any for the imported image type
+  title: string;
+  description: string;
+  fields: Field[];
 }
 
 interface FormDataType {
-  [key: string]: string | string[] | boolean
+  [key: string]: string | string[] | boolean;
 }
 
 const services: Service[] = [
@@ -110,7 +110,12 @@ const services: Service[] = [
       { name: "address", label: "Address", type: "textarea", required: true },
       { name: "email", label: "Email Address", type: "email", required: true },
       { name: "phone", label: "Phone Number", type: "tel", required: true },
-      { name: "amount", label: "Donation Amount", type: "number", required: true },
+      {
+        name: "amount",
+        label: "Donation Amount",
+        type: "number",
+        required: true,
+      },
       {
         name: "paymentMethod",
         label: "Payment Method",
@@ -118,7 +123,11 @@ const services: Service[] = [
         options: ["UPI", "Bank Transfer", "Credit/Debit Card", "Other"],
         required: true,
       },
-      { name: "message", label: "Comments/Message (Optional)", type: "textarea" },
+      {
+        name: "message",
+        label: "Comments/Message (Optional)",
+        type: "textarea",
+      },
     ],
   },
   {
@@ -128,10 +137,30 @@ const services: Service[] = [
     description:
       "Thank you for your interest in partnering with SSLF Charity Trust. Your organization's support will help us drive impactful initiatives in education, healthcare, skill development, and community welfare.",
     fields: [
-      { name: "companyName", label: "Company Name", type: "text", required: true },
-      { name: "companyAddress", label: "Company Address", type: "textarea", required: true },
-      { name: "contactPerson", label: "Contact Person Name", type: "text", required: true },
-      { name: "designation", label: "Designation", type: "text", required: true },
+      {
+        name: "companyName",
+        label: "Company Name",
+        type: "text",
+        required: true,
+      },
+      {
+        name: "companyAddress",
+        label: "Company Address",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "contactPerson",
+        label: "Contact Person Name",
+        type: "text",
+        required: true,
+      },
+      {
+        name: "designation",
+        label: "Designation",
+        type: "text",
+        required: true,
+      },
       { name: "email", label: "Email Address", type: "email", required: true },
       { name: "phone", label: "Phone Number", type: "tel", required: true },
       {
@@ -149,7 +178,11 @@ const services: Service[] = [
         ],
         required: true,
       },
-      { name: "donationAmount", label: "Preferred Donation Amount (if applicable)", type: "number" },
+      {
+        name: "donationAmount",
+        label: "Preferred Donation Amount (if applicable)",
+        type: "number",
+      },
       {
         name: "donationMode",
         label: "Preferred Mode of Donation",
@@ -164,7 +197,11 @@ const services: Service[] = [
         options: ["Yes", "No"],
         required: true,
       },
-      { name: "additionalComments", label: "Additional Comments or Specific Interests", type: "textarea" },
+      {
+        name: "additionalComments",
+        label: "Additional Comments or Specific Interests",
+        type: "textarea",
+      },
       // {
       //   name: "consent",
       //   label:
@@ -181,22 +218,49 @@ const services: Service[] = [
     description:
       "SSLF Charity Trust is committed to supporting education through scholarships, training programs, and awareness initiatives. We invite educational institutions to collaborate with us in empowering students and creating meaningful change.",
     fields: [
-      { name: "institutionName", label: "Institution Name", type: "text", required: true },
+      {
+        name: "institutionName",
+        label: "Institution Name",
+        type: "text",
+        required: true,
+      },
       {
         name: "institutionType",
         label: "Institution Type",
         type: "radio",
-        options: ["School", "College", "University", "Training Institute", "Other"],
+        options: [
+          "School",
+          "College",
+          "University",
+          "Training Institute",
+          "Other",
+        ],
         required: true,
       },
-      { name: "institutionAddress", label: "Institution Address", type: "textarea", required: true },
-      { name: "contactPerson", label: "Contact Person Name", type: "text", required: true },
-      { name: "designation", label: "Designation", type: "text", required: true },
+      {
+        name: "institutionAddress",
+        label: "Institution Address",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "contactPerson",
+        label: "Contact Person Name",
+        type: "text",
+        required: true,
+      },
+      {
+        name: "designation",
+        label: "Designation",
+        type: "text",
+        required: true,
+      },
       { name: "email", label: "Email Address", type: "email", required: true },
       { name: "phone", label: "Phone Number", type: "tel", required: true },
       {
         name: "collaborationTypes",
-        label: "How would your institution like to collaborate with SSLF Charity Trust?",
+        label:
+          "How would your institution like to collaborate with SSLF Charity Trust?",
         type: "checkbox",
         options: [
           "Student Scholarships & Financial Aid",
@@ -210,12 +274,17 @@ const services: Service[] = [
       },
       {
         name: "hostEvents",
-        label: "Would your institution be willing to host SSLF Charity Trust events/programs?",
+        label:
+          "Would your institution be willing to host SSLF Charity Trust events/programs?",
         type: "radio",
         options: ["Yes", "No", "Maybe"],
         required: true,
       },
-      { name: "additionalComments", label: "Additional Comments or Specific Interests", type: "textarea" },
+      {
+        name: "additionalComments",
+        label: "Additional Comments or Specific Interests",
+        type: "textarea",
+      },
       // {
       //   name: "consent",
       //   label:
@@ -225,94 +294,100 @@ const services: Service[] = [
       // },
     ],
   },
-]
+];
 
 export default function ServicesSection() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const [formData, setFormData] = useState<FormDataType>({})
-  const [checkboxData, setCheckboxData] = useState<Record<string, string[]>>({})
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [formData, setFormData] = useState<FormDataType>({});
+  const [checkboxData, setCheckboxData] = useState<Record<string, string[]>>(
+    {}
+  );
 
   const openForm = (index: number) => {
-    setActiveIndex(index)
+    setActiveIndex(index);
     // Initialize form data for this service
-    const initialData: FormDataType = {}
-    const initialCheckboxData: Record<string, string[]> = {}
+    const initialData: FormDataType = {};
+    const initialCheckboxData: Record<string, string[]> = {};
 
     services[index].fields.forEach((field) => {
       if (field.type === "checkbox" && field.options) {
-        initialCheckboxData[field.name] = []
+        initialCheckboxData[field.name] = [];
       } else if (field.type === "select" && field.options) {
-        initialData[field.name] = field.options[0]
+        initialData[field.name] = field.options[0];
       } else {
-        initialData[field.name] = ""
+        initialData[field.name] = "";
       }
-    })
+    });
 
-    setFormData(initialData)
-    setCheckboxData(initialCheckboxData)
-  }
+    setFormData(initialData);
+    setCheckboxData(initialCheckboxData);
+  };
 
   const closeForm = () => {
-    setActiveIndex(null)
-    setFormData({})
-    setCheckboxData({})
-  }
+    setActiveIndex(null);
+    setFormData({});
+    setCheckboxData({});
+  };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
-    })
-  }
+    });
+  };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = e.target
+    const { name, value, checked } = e.target;
 
     setCheckboxData((prev) => {
-      const updatedValues = [...(prev[name] || [])]
+      const updatedValues = [...(prev[name] || [])];
 
       if (checked) {
-        updatedValues.push(value)
+        updatedValues.push(value);
       } else {
-        const index = updatedValues.indexOf(value)
+        const index = updatedValues.indexOf(value);
         if (index !== -1) {
-          updatedValues.splice(index, 1)
+          updatedValues.splice(index, 1);
         }
       }
 
       return {
         ...prev,
         [name]: updatedValues,
-      }
-    })
-  }
+      };
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     // Combine regular form data with checkbox data
     const completeFormData = {
       ...formData,
       ...checkboxData,
-    }
+    };
 
     // Here you would typically send the form data to your backend
-    console.log("Form submitted:", completeFormData)
-    alert("Thank you for your submission! We'll be in touch soon.")
-    closeForm()
-  }
+    console.log("Form submitted:", completeFormData);
+    alert("Thank you for your submission! We'll be in touch soon.");
+    closeForm();
+  };
 
   // Check if a conditional field should be shown
   const shouldShowField = (field: Field): boolean => {
-    if (!field.conditional) return true
+    if (!field.conditional) return true;
 
-    const { field: condField, value } = field.conditional
-    return formData[condField] === value
-  }
+    const { field: condField, value } = field.conditional;
+    return formData[condField] === value;
+  };
 
   // Render form input based on field type
   const renderFormField = (field: Field) => {
-    if (!shouldShowField(field)) return null
+    if (!shouldShowField(field)) return null;
 
     switch (field.type) {
       case "select":
@@ -331,7 +406,7 @@ export default function ServicesSection() {
               </option>
             ))}
           </select>
-        )
+        );
       case "textarea":
         return (
           <textarea
@@ -343,7 +418,7 @@ export default function ServicesSection() {
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#0b0a46]"
             required={field.required}
           ></textarea>
-        )
+        );
       case "checkbox":
         // Special handling for consent field
         if (field.name === "consent") {
@@ -354,7 +429,9 @@ export default function ServicesSection() {
                 name={field.name}
                 id={field.name}
                 checked={!!formData[field.name]}
-                onChange={(e) => setFormData({ ...formData, [field.name]: e.target.checked })}
+                onChange={(e) =>
+                  setFormData({ ...formData, [field.name]: e.target.checked })
+                }
                 className="mr-2"
                 required={field.required}
               />
@@ -362,7 +439,7 @@ export default function ServicesSection() {
                 {field.label}
               </label>
             </div>
-          )
+          );
         } else if (field.options) {
           // For checkboxes with options
           return (
@@ -377,17 +454,23 @@ export default function ServicesSection() {
                     checked={(checkboxData[field.name] || []).includes(option)}
                     onChange={handleCheckboxChange}
                     className="mt-1 mr-2"
-                    required={field.required && (checkboxData[field.name] || []).length === 0}
+                    required={
+                      field.required &&
+                      (checkboxData[field.name] || []).length === 0
+                    }
                   />
-                  <label htmlFor={`${field.name}-${option}`} className="text-sm text-gray-700">
+                  <label
+                    htmlFor={`${field.name}-${option}`}
+                    className="text-sm text-gray-700"
+                  >
                     {option}
                   </label>
                 </div>
               ))}
             </div>
-          )
+          );
         }
-        return null
+        return null;
       case "radio":
         return field.options ? (
           <div className="space-y-2">
@@ -403,13 +486,16 @@ export default function ServicesSection() {
                   className="mr-2"
                   required={field.required}
                 />
-                <label htmlFor={`${field.name}-${option}`} className="text-sm text-gray-700">
+                <label
+                  htmlFor={`${field.name}-${option}`}
+                  className="text-sm text-gray-700"
+                >
                   {option}
                 </label>
               </div>
             ))}
           </div>
-        ) : null
+        ) : null;
       default:
         return (
           <input
@@ -421,19 +507,26 @@ export default function ServicesSection() {
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#0b0a46]"
             required={field.required}
           />
-        )
+        );
     }
-  }
+  };
 
   return (
     <section className="py-16 bg-white text-center relative">
       <div className="container mx-auto px-4 mb-6">
-        <h2 className="text-3xl font-bold mb-2 text-[#0b0a46] tracking-wide">BE A PART WITH US</h2>
-        <p className="text-gray-600 mb-4 max-w-2xl mx-auto">
-          Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque suscipit donec, tortor duis phasellus vivamus
-          wisi placerat, pellentesque augue leo. Orci nullam, nonummy nam sed, sapien temporibus ac ac, velit ante
-          volutpat enim <span className="font-bold text-[#0b0a46]">We Help 22,4780 People</span>
-        </p>
+        <h2 className="text-3xl font-bold mb-2 text-[#0b0a46] tracking-wide">
+          BE A PART WITH US
+        </h2>
+        {/* <p className="text-gray-600 mb-4 max-w-2xl mx-auto">
+          Be a part of SSLF Charity Trust and contribute to transforming lives
+          through education, healthcare, and community welfare. Your
+          support whether through volunteering, donations, or partnerships helps
+          provide scholarships, medical aid, skill development, and social
+          awareness programs to those in need. Together, we can create
+          opportunities, empower individuals, and build a more inclusive
+          society. Join us in making a lasting impact and bringing hope to
+          underprivileged communities!
+        </p> */}
 
         {/* Grid layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 pt-2">
@@ -454,7 +547,9 @@ export default function ServicesSection() {
 
               {/* Text with hover effect */}
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <h3 className="text-lg font-bold tracking-wide">{service.name}</h3>
+                <h3 className="text-lg font-bold tracking-wide">
+                  {service.name}
+                </h3>
               </div>
             </div>
           ))}
@@ -470,7 +565,9 @@ export default function ServicesSection() {
           >
             {/* Header with close button */}
             <div className="sticky top-0 z-10 bg-[#0b0a46] text-white p-4 flex justify-between items-center">
-              <h3 className="text-xl font-bold">{services[activeIndex].title}</h3>
+              <h3 className="text-xl font-bold">
+                {services[activeIndex].title}
+              </h3>
               <button
                 onClick={closeForm}
                 className="text-white hover:text-gray-200 focus:outline-none"
@@ -486,7 +583,9 @@ export default function ServicesSection() {
               <div className="flex flex-col md:flex-row w-full">
                 {/* Left column - Heading and content */}
                 <div className="p-4 sm:p-6 md:w-1/2 bg-gray-50">
-                  <p className="text-gray-600 mb-6">{services[activeIndex].description}</p>
+                  <p className="text-gray-600 mb-6">
+                    {services[activeIndex].description}
+                  </p>
                 </div>
 
                 {/* Right column - Form */}
@@ -500,11 +599,14 @@ export default function ServicesSection() {
                               htmlFor={field.name}
                               className="block text-sm font-medium text-gray-700 mb-1 text-left"
                             >
-                              {field.label} {field.required && <span className="text-red-500">*</span>}
+                              {field.label}{" "}
+                              {field.required && (
+                                <span className="text-red-500">*</span>
+                              )}
                             </label>
                             {renderFormField(field)}
                           </div>
-                        ),
+                        )
                     )}
 
                     <div className="pt-4 pb-6 sticky bottom-0 bg-white border-t mt-6">
@@ -523,5 +625,5 @@ export default function ServicesSection() {
         </div>
       )}
     </section>
-  )
+  );
 }

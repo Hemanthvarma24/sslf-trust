@@ -9,18 +9,10 @@ export default function AboutSection() {
       <div className="container mx-auto px-6 lg:px-16">
         {/* Heading */}
         <h2 className="text-3xl font-bold mb-4 text-[#0b0a46]">ABOUT US</h2>
-        {/* <p className="max-w-2xl mx-auto mb-8 text-gray-600 leading-relaxed">
-          Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque suscipit
-          donec, tortor duis phasellus vivamus wisi placerat, pellentesque augue
-          leo. Orci nullam, nonummy nam sed, sapien temporibus ac ac, velit ante
-          volutpat enim{" "}
-          <span className="font-bold text-[#0b0a46]">
-            We Help 22,4780 People
-          </span>
-        </p> */}
+       
 
         {/* Card Container */}
-        <div className="grid md:grid-cols-3 gap-6 justify-center items-center">
+        <div className="grid md:grid-cols-3 gap-6 justify-center  items-center">
           {/* About SSLF Card */}
           <div className="bg-gray-50 rounded-lg shadow-lg overflow-hidden max-w-[350px] mx-auto transform transition duration-300 hover:scale-105">
             <Image
@@ -33,8 +25,7 @@ export default function AboutSection() {
             <div className="p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">ABOUT SSLF</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque
-                suscipit donec, tortor duis phasellus vivamus wisi
+              SSLF Charity Trust uplifts communities through education, healthcare, and welfare initiatives. With donor and volunteer support, we provide scholarships, medical camps, and skill-based training.
               </p>
               <a
                 href="/aboutus"
@@ -57,8 +48,7 @@ export default function AboutSection() {
             <div className="p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">VISION</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque
-                suscipit donec, tortor duis phasellus vivamus wisi
+              Empowering individuals and communities through education, wellness, and entrepreneurship, while fostering social responsibility and women's empowerment.
               </p>
               <a
                 href="/aboutus"
@@ -81,8 +71,7 @@ export default function AboutSection() {
             <div className="p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">MISSION</h3>
               <p className="text-gray-600 text-sm mb-4">
-                Lorem ipsum dolor sit amet, vitae mattis vehicula scelerisque
-                suscipit donec, tortor duis phasellus vivamus wisi
+              We provide scholarships, healthcare, and entrepreneurial guidance to underprivileged youth, promoting literacy, social awareness, and inclusive community growth.
               </p>
               <a
                 href="/aboutus"

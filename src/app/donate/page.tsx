@@ -28,9 +28,13 @@ export default function DonationForm() {
     setFormData((prev) => ({ ...prev, paymentMethod: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+
+    const whatsappMessage = `Donation Inquiry:\n\n*Full Name:* ${formData.fullName}\n*Age:* ${formData.age}\n*Address:* ${formData.address}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Donation Amount:* ₹${formData.amount}\n*Payment Method:* ${formData.paymentMethod}\n*Message:* ${formData.message || "N/A"}`;
+
+    const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappURL, "_blank");
 
     // Show toast notification
     toast.success(`Thank you, ${formData.fullName}, for your generous donation of ₹${formData.amount}.`);
@@ -49,7 +53,7 @@ export default function DonationForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-22 pb-14 border border-gray-200">
+    <div className="max-w-xl mx-auto p-8 bg-white shadow-lg rounded-xl mt-22 pb-14">
       <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">SSLF Charity Trust Donation</h2>
       <p className="text-gray-600 text-center mb-6">
         Your contribution can make a real difference in the lives of those in need.

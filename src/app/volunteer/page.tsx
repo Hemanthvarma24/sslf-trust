@@ -47,13 +47,31 @@ export default function VolunteerForm() {
     }
   };
 
+  const validateForm = () => {
+    if (!formData.fullName || !formData.email || !formData.phone || !formData.dob) {
+      alert("Please fill all required fields.");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert("Invalid email format.");
+      return false;
+    }
+    if (!/^\d{10}$/.test(formData.phone)) {
+      alert("Invalid phone number. Must be 10 digits.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+    if (validateForm()) {
+      console.log("Form Submitted", formData);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex mt-18 pb-12 items-center justify-center p-6">
+    <div className="min-h-screen bg-white flex mt-18 pb-12 items-center justify-center p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
         <h2 className="text-2xl font-bold text-center mb-6">Join Our Volunteer Program</h2>
         <p className="text-gray-600 text-center mb-6">
@@ -68,7 +86,7 @@ export default function VolunteerForm() {
 
           <fieldset className="space-y-2">
             <legend className="font-semibold">Which activities would you like to volunteer for?</legend>
-            {["Education Support (Scholarship & Mentoring)", "Medical Camps & Blood Donation Drives", "Awareness Programs", "Training & Skill Development Programs", "Fundraising & Event Management", "Social Media & Promotions"].map((activity) => (
+            {["Education Support", "Medical Camps", "Awareness Programs", "Fundraising", "Social Media"].map((activity) => (
               <label key={activity} className="block">
                 <input type="checkbox" name="volunteerActivities" value={activity} onChange={handleChange} /> {activity}
               </label>

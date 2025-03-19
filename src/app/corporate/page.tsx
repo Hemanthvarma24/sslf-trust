@@ -46,11 +46,14 @@ export default function CorporatePartnership() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Submitted", formData);
+    const whatsappMessage = `Corporate Partnership Inquiry:\n\n*Company Name:* ${formData.companyName}\n*Company Address:* ${formData.companyAddress}\n*Contact Person:* ${formData.contactPerson}\n*Designation:* ${formData.designation}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Contribution Type:* ${formData.contributionType.join(", ")}\n*Donation Amount:* ${formData.donationAmount}\n*Donation Mode:* ${formData.donationMode}\n*Tax Receipt:* ${formData.taxReceipt}\n*Additional Comments:* ${formData.additionalComments}`;
+
+    const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappURL, "_blank");
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center mt-18 pb-8 justify-center p-6">
+    <div className="min-h-screen bg-white flex items-center mt-18 pb-8 justify-center p-6">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
         <h2 className="text-2xl font-bold text-center mb-6">Corporate Partnership</h2>
         <p className="text-gray-600 text-center mb-6">

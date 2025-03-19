@@ -70,7 +70,7 @@ export default function GallerySection() {
   }, []);
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold uppercase">Photo Gallery</h2>
