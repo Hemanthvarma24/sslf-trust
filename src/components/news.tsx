@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 
 // Scholarship images
 import imgone from "@/assets/news&Events/scholaship/IMG-20250311-WA0108.jpg"
@@ -24,7 +24,7 @@ import awsone from "@/assets/news&Events/awarenessprogram/0ne.jpg"
 import awstwo from "@/assets/news&Events/awarenessprogram/four.jpg"
 import awsthree from "@/assets/news&Events/awarenessprogram/piccc.jpg"
 import awsfour from "@/assets/news&Events/awarenessprogram/three.jpg"
-import awsfive from "@/assets/news&Events/awarenessprogram/two.jpg"
+import awsfive from "@/assets/news&Events/awarenessprogram/neww.jpg"
 import awssix from "@/assets/news&Events/awarenessprogram/five.jpg"
 
 // Vocational training images
@@ -33,7 +33,6 @@ import vtctwo from "@/assets/news&Events/vocialtraning/WhatsApp Image 2025-03-11
 import vtcthree from "@/assets/news&Events/vocialtraning/fce931b8-20de-4f76-838a-45e7316b04d3.jpg"
 import vtcfour from "@/assets/news&Events/vocialtraning/f306a458-a933-490f-aca8-6ab1dba2837a.jpg"
 import vtcfive from "@/assets/news&Events/vocialtraning/eead60c9-b045-4864-bbb6-20957869fd26.jpg"
-// import vtcsix from "@/assets/news&Events/vocialtraning/WhatsApp Image 2025-03-19 at 19.58.26_5db3cabf.jpg"
 
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg"
@@ -88,59 +87,102 @@ export default function NewsEventsSection() {
     { id: 21, title: "Handicraft Training Session", category: "VOCATIONAL TRAINING", image: vtcthree },
     { id: 22, title: "Youth Employment Training", category: "VOCATIONAL TRAINING", image: vtcfour },
     { id: 23, title: "Women Empowerment Workshop", category: "VOCATIONAL TRAINING", image: vtcfive },
-    // { id: 24, title: "Technical Skills Training", category: "VOCATIONAL TRAINING", image: vtcsix },
 
     // Donate Program items
-    { id: 25, title: "Food Distribution Drive", category: "DONATE PROGRAM", image: donate },
-    { id: 26, title: "Clothing Donation Campaign", category: "DONATE PROGRAM", image: donatetwo },
-    { id: 27, title: "Educational Materials Donation", category: "DONATE PROGRAM", image: donatethree },
+    { id: 24, title: "Food Distribution Drive", category: "DONATE PROGRAM", image: donate },
+    { id: 25, title: "Clothing Donation Campaign", category: "DONATE PROGRAM", image: donatetwo },
+    { id: 26, title: "Educational Materials Donation", category: "DONATE PROGRAM", image: donatethree },
   ]
 
   const [activeCategory, setActiveCategory] = useState<string>("SCHOLARSHIP")
   const filteredItems = newsItems.filter((item) => item.category === activeCategory)
+  const menuRef = useRef<HTMLDivElement>(null)
+  
+  // Auto-rotate categories every 8 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCategory(prevCategory => {
+        const currentIndex = categories.indexOf(prevCategory)
+        const nextIndex = (currentIndex + 1) % categories.length
+        return categories[nextIndex]
+      })
+    }, 8000)
+    
+    return () => clearInterval(interval)
+  }, [categories])
+  
+  // Scroll active category into view
+  useEffect(() => {
+    if (menuRef.current) {
+      const activeButton = menuRef.current.querySelector(`button[data-category="${activeCategory}"]`)
+      if (activeButton) {
+        const container = menuRef.current
+        const scrollLeft = activeButton.getBoundingClientRect().left - 
+                            container.getBoundingClientRect().left + 
+                            container.scrollLeft - 
+                            (container.offsetWidth - (activeButton as HTMLElement).offsetWidth) / 2
+        
+        container.scrollTo({
+          left: scrollLeft,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }, [activeCategory])
 
   return (
-    <section className="py-8 md:py-12 bg-white">
+    <section className="py-10 md:py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl text-[#0b0a45] md:text-3xl mb-2 font-bold">NEWS & EVENTS</h2>
-          {/* <p className="text-gray-600 mt-2 text-sm md:text-base max-w-2xl mx-auto px-2">
-            Stay updated with SSLF Charity Trust's latest news and events, including educational programs, healthcare
-            initiatives, awareness and training programs. We actively organize awareness campaigns, skill development
-            programs, and outreach events to uplift society. Join us in making a meaningful impact!
-          </p> */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl text-[#0b0a45] md:text-4xl font-bold">NEWS & EVENTS</h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-2 mb-6 px-2">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-semibold border rounded-md transition-all ${
-                activeCategory === category ? "bg-blue-900 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Centered menu container for desktop, scrollable for mobile */}
+        <div className="relative mb-8 flex justify-center">
+          <div 
+            ref={menuRef}
+            className="flex md:max-w-fit mx-auto overflow-x-auto scrollbar-hide gap-3 py-2 px-1 scroll-smooth snap-x"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {categories.map((category) => (
+              <button
+                key={category}
+                data-category={category}
+                className={`px-4 py-2 text-xs md:text-sm font-semibold border rounded-md transition-all whitespace-nowrap flex-shrink-0 snap-start ${
+                  activeCategory === category 
+                    ? "bg-blue-900 text-white shadow-md" 
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="relative rounded-lg overflow-hidden shadow-md group h-[250px]">
-              <div className="w-full h-full">
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  priority={item.id <= 3}
-                />
-              </div>
-            </div>
-          ))}
+       {/* Image grid - 2 columns on mobile, 3 columns on desktop with object-contain */}
+<div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+  {filteredItems.map((item) => (
+    <div
+      key={item.id}
+      className="relative rounded-lg overflow-hidden shadow-lg group h-44 sm:h-56 md:h-64 lg:h-72 transition-transform hover:scale-[1.02] duration-300"
+    >
+      <div className="relative w-full h-full overflow-hidden">
+        <Image
+          src={item.image || "/placeholder.svg"}
+          alt={item.title}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 33vw"
+          className="object-contain w-full h-full p-1 transition-transform duration-300 group-hover:scale-110"
+          priority={item.id <= 6}
+        />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </div>
+      </div>
+    </div>
+  ))}
+</div>
 
         {filteredItems.length === 0 && (
           <div className="text-center py-10">
@@ -151,4 +193,3 @@ export default function NewsEventsSection() {
     </section>
   )
 }
-

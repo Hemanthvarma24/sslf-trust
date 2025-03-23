@@ -1,22 +1,56 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import type React from "react"
+
+import { useState } from "react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+
+type ContributionType =
+  | "Financial Donation"
+  | "Employee Volunteering Programs"
+  | "Sponsoring Medical Camps/Blood Donation Drives"
+  | "Scholarship & Education Support"
+  | "Awareness & Social Impact Programs"
+  | "Training & Skill Development Initiatives"
+  | "CSR Collaboration & Long-term Partnership"
+
+type DonationMode = "Bank Transfer" | "Cheque" | "Online Payment" | "Other"
+type TaxReceipt = "Yes" | "No"
+
+interface FormDataType {
+  companyName: string
+  companyAddress: string
+  contactPerson: string
+  designation: string
+  email: string
+  phone: string
+  contributionType: ContributionType[]
+  donationAmount: string
+  donationMode: DonationMode | ""
+  taxReceipt: TaxReceipt | ""
+  additionalComments: string
+}
+
+const contributionOptions: ContributionType[] = [
+  "Financial Donation",
+  "Employee Volunteering Programs",
+  "Sponsoring Medical Camps/Blood Donation Drives",
+  "Scholarship & Education Support",
+  "Awareness & Social Impact Programs",
+  "Training & Skill Development Initiatives",
+  "CSR Collaboration & Long-term Partnership",
+]
+
+const donationModeOptions: DonationMode[] = ["Bank Transfer", "Cheque", "Online Payment", "Other"]
+const taxReceiptOptions: TaxReceipt[] = ["Yes", "No"]
 
 export default function CorporatePartnership() {
-  type FormDataType = {
-    companyName: string;
-    companyAddress: string;
-    contactPerson: string;
-    designation: string;
-    email: string;
-    phone: string;
-    contributionType: string[];
-    donationAmount: string;
-    donationMode: string;
-    taxReceipt: string;
-    additionalComments: string;
-  };
-
   const [formData, setFormData] = useState<FormDataType>({
     companyName: "",
     companyAddress: "",
@@ -29,78 +63,238 @@ export default function CorporatePartnership() {
     donationMode: "",
     taxReceipt: "",
     additionalComments: "",
-  });
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type, checked } = e.target as HTMLInputElement;
-
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox"
-        ? checked
-          ? [...(prev[name as keyof FormDataType] as string[]), value]
-          : (prev[name as keyof FormDataType] as string[]).filter((v) => v !== value)
-        : value,
-    }));
-  };
+      [name]: value,
+    }))
+  }
+
+  const handleCheckboxChange = (value: ContributionType, checked: boolean) => {
+    setFormData((prev) => ({
+      ...prev,
+      contributionType: checked
+        ? [...prev.contributionType, value]
+        : prev.contributionType.filter((item) => item !== value),
+    }))
+  }
+
+  const handleRadioChange = (name: string, value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const validateForm = () => {
+    if (!formData.companyName || !formData.contactPerson || !formData.email || !formData.phone) {
+      alert("Please fill all required fields.")
+      return false
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert("Invalid email format.")
+      return false
+    }
+    return true
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const whatsappMessage = `Corporate Partnership Inquiry:\n\n*Company Name:* ${formData.companyName}\n*Company Address:* ${formData.companyAddress}\n*Contact Person:* ${formData.contactPerson}\n*Designation:* ${formData.designation}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Contribution Type:* ${formData.contributionType.join(", ")}\n*Donation Amount:* ${formData.donationAmount}\n*Donation Mode:* ${formData.donationMode}\n*Tax Receipt:* ${formData.taxReceipt}\n*Additional Comments:* ${formData.additionalComments}`;
+    e.preventDefault()
 
-    const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappURL, "_blank");
-  };
+    if (validateForm()) {
+      const whatsappMessage = `Corporate Partnership Inquiry:\n\n*Company Name:* ${formData.companyName}\n*Company Address:* ${formData.companyAddress}\n*Contact Person:* ${formData.contactPerson}\n*Designation:* ${formData.designation}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone}\n*Contribution Type:* ${formData.contributionType.join(", ") || "None selected"}\n*Donation Amount:* ${formData.donationAmount || "N/A"}\n*Donation Mode:* ${formData.donationMode || "N/A"}\n*Tax Receipt:* ${formData.taxReceipt || "N/A"}\n*Additional Comments:* ${formData.additionalComments || "N/A"}`
+
+      const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`
+      window.open(whatsappURL, "_blank")
+
+      alert("Your partnership request has been submitted successfully.")
+
+      // Reset form
+      setFormData({
+        companyName: "",
+        companyAddress: "",
+        contactPerson: "",
+        designation: "",
+        email: "",
+        phone: "",
+        contributionType: [],
+        donationAmount: "",
+        donationMode: "",
+        taxReceipt: "",
+        additionalComments: "",
+      })
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-white flex items-center mt-18 pb-8 justify-center p-6">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-2xl w-full">
-        <h2 className="text-2xl font-bold text-center mb-6">Corporate Partnership</h2>
-        <p className="text-gray-600 text-center mb-6">
-          Thank you for your interest in partnering with SSLF Charity Trust. Your support helps us drive impactful initiatives.
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input type="text" name="companyName" placeholder="Company Name" required className="w-full p-3 border rounded-lg" onChange={handleChange} />
-          <textarea name="companyAddress" placeholder="Company Address" required className="w-full p-3 border rounded-lg" onChange={handleChange}></textarea>
-          <input type="text" name="contactPerson" placeholder="Contact Person Name" required className="w-full p-3 border rounded-lg" onChange={handleChange} />
-          <input type="text" name="designation" placeholder="Designation" required className="w-full p-3 border rounded-lg" onChange={handleChange} />
-          <input type="email" name="email" placeholder="Email Address" required className="w-full p-3 border rounded-lg" onChange={handleChange} />
-          <input type="tel" name="phone" placeholder="Phone Number" required className="w-full p-3 border rounded-lg" onChange={handleChange} />
+    <div className="min-h-screen bg-white flex items-center justify-center mt-8 p-6 py-16">
+      <Card className="w-full max-w-2xl shadow-sm">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-center">Corporate Partnership</CardTitle>
+          <CardDescription className="text-center">
+            Thank you for your interest in partnering with SSLF Charity Trust. Your support helps us drive impactful
+            initiatives.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="companyName">Company Name</Label>
+                <Input
+                  id="companyName"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-          <fieldset className="space-y-2">
-            <legend className="font-semibold">How would your company like to contribute?</legend>
-            {["Financial Donation", "Employee Volunteering Programs", "Sponsoring Medical Camps/Blood Donation Drives", "Scholarship & Education Support", "Awareness & Social Impact Programs", "Training & Skill Development Initiatives", "CSR Collaboration & Long-term Partnership"].map((option) => (
-              <label key={option} className="block">
-                <input type="checkbox" name="contributionType" value={option} onChange={handleChange} /> {option}
-              </label>
-            ))}
-          </fieldset>
+              <div className="space-y-2">
+                <Label htmlFor="companyAddress">Company Address</Label>
+                <Textarea
+                  id="companyAddress"
+                  name="companyAddress"
+                  value={formData.companyAddress}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-          <input type="number" name="donationAmount" placeholder="Preferred Donation Amount (if applicable)" className="w-full p-3 border rounded-lg" onChange={handleChange} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="contactPerson">Contact Person</Label>
+                  <Input
+                    id="contactPerson"
+                    name="contactPerson"
+                    value={formData.contactPerson}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-          <fieldset className="space-y-2">
-            <legend className="font-semibold">Preferred Mode of Donation</legend>
-            {["Bank Transfer", "Cheque", "Online Payment", "Other"].map((option) => (
-              <label key={option} className="block">
-                <input type="radio" name="donationMode" value={option} onChange={handleChange} /> {option}
-              </label>
-            ))}
-          </fieldset>
+                <div className="space-y-2">
+                  <Label htmlFor="designation">Designation</Label>
+                  <Input
+                    id="designation"
+                    name="designation"
+                    value={formData.designation}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
 
-          <fieldset className="space-y-2">
-            <legend className="font-semibold">Would you like a tax-exemption receipt?</legend>
-            {["Yes", "No"].map((option) => (
-              <label key={option} className="block">
-                <input type="radio" name="taxReceipt" value={option} onChange={handleChange} /> {option}
-              </label>
-            ))}
-          </fieldset>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
 
-          <textarea name="additionalComments" placeholder="Additional Comments or Specific Interests" className="w-full p-3 border rounded-lg" onChange={handleChange}></textarea>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone Number</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
 
-          <button type="submit" className="w-full bg-[#0b0a45] hover:bg-gray-400 text-white p-3 rounded-lg">Submit</button>
-        </form>
-      </div>
+              <div className="space-y-3">
+                <Label>How would your company like to contribute?</Label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {contributionOptions.map((option) => (
+                    <div key={option} className="flex items-center space-x-2">
+                      <Checkbox
+                        id={`contribution-${option}`}
+                        checked={formData.contributionType.includes(option)}
+                        onCheckedChange={(checked) => handleCheckboxChange(option, checked as boolean)}
+                      />
+                      <Label htmlFor={`contribution-${option}`} className="font-normal">
+                        {option}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="donationAmount">Preferred Donation Amount (if applicable)</Label>
+                <Input
+                  id="donationAmount"
+                  name="donationAmount"
+                  type="number"
+                  value={formData.donationAmount}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className="space-y-3">
+                <Label>Preferred Mode of Donation</Label>
+                <RadioGroup
+                  value={formData.donationMode}
+                  onValueChange={(value) => handleRadioChange("donationMode", value)}
+                >
+                  {donationModeOptions.map((option) => (
+                    <div key={option} className="flex items-center space-x-2">
+                      <RadioGroupItem value={option} id={`donationMode-${option}`} />
+                      <Label htmlFor={`donationMode-${option}`} className="font-normal">
+                        {option}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+
+              <div className="space-y-3">
+                <Label>Would you like a tax-exemption receipt?</Label>
+                <RadioGroup
+                  value={formData.taxReceipt}
+                  onValueChange={(value) => handleRadioChange("taxReceipt", value)}
+                >
+                  {taxReceiptOptions.map((option) => (
+                    <div key={option} className="flex items-center space-x-2">
+                      <RadioGroupItem value={option} id={`taxReceipt-${option}`} />
+                      <Label htmlFor={`taxReceipt-${option}`} className="font-normal">
+                        {option}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="additionalComments">Additional Comments or Specific Interests</Label>
+                <Textarea
+                  id="additionalComments"
+                  name="additionalComments"
+                  value={formData.additionalComments}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <Button type="submit" className="w-full bg-[#0b0a45] hover:bg-gray-700">
+              Submit
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
+

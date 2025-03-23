@@ -4,7 +4,12 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,34 +30,35 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen flex items-center pt-22 justify-center bg-white p-6">
-      <div className="bg-white shadow-sm rounded-2xl p-10 max-w-5xl w-full">
-        <h2 className="text-4xl font-bold text-gray-800 text-center mb-10">Get in Touch</h2>
-        <div className="grid md:grid-cols-2 gap-12">
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
+      <div className="bg-white shadow-md rounded-xl p-6 max-w-4xl w-full">
+        <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">Get in Touch</h2>
+        <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Information */}
-          <div className="space-y-4 flex flex-col justify-center">
-            <div className="flex items-center space-x-4  p-5  ">
-              <FaPhoneAlt className="text-[#0b0a46] text-2xl" />
-              <span className="text-gray-700 font-medium text-lg">9094099940</span>
+          <div className="space-y-3 flex flex-col justify-center">
+            <div className="flex items-center space-x-3 p-3">
+              <FaPhoneAlt className="text-[#0b0a46] text-xl" />
+              <span className="text-gray-700 font-medium">9094099940</span>
             </div>
-            <div className="flex items-center space-x-4  p-5  ">
-              <FaEnvelope className="text-[#0b0a46] text-2xl" />
-              <span className="text-gray-700 font-medium text-lg">edu@sslftrust.com</span>
+            <div className="flex items-center space-x-3 p-3">
+              <FaEnvelope className="text-[#0b0a46] text-xl" />
+              <span className="text-gray-700 font-medium">edu@sslftrust.com</span>
             </div>
-            <div className="flex items-center space-x-4 p-5 ">
-              <FaMapMarkerAlt className="text-[#0b0a46] text-5xl" />
-              <span className="text-gray-700 font-medium text-lg">210, Defence Colony 15th Cross St, Defence Colony, Ekkatuthangal, Chennai, Tamil Nadu 600032</span>
+            <div className="flex items-start space-x-3 p-3">
+              <FaMapMarkerAlt className="text-[#0b0a46] text-xl mt-1" />
+              <span className="text-gray-700 font-medium">210, Defence Colony 15th Cross St, Defence Colony, Ekkatuthangal, Chennai, Tamil Nadu 600032</span>
             </div>
           </div>
+          
           {/* Contact Form */}
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full p-4 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
               required
             />
             <input
@@ -61,7 +67,7 @@ export default function ContactUs() {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-4 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
               required
             />
             <input
@@ -70,7 +76,7 @@ export default function ContactUs() {
               placeholder="Subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full p-4 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
               required
             />
             <textarea
@@ -78,13 +84,13 @@ export default function ContactUs() {
               placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full p-4 border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows={5}
+              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
+              rows={4}
               required
             ></textarea>
             <button
               type="submit"
-              className="w-full bg-[#0b0a46] text-white py-4 rounded-lg shadow-lg hover:bg-gray-500 transition duration-300 text-lg font-semibold"
+              className="w-full bg-[#0b0a46] text-white py-3 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium"
             >
               Send Message
             </button>

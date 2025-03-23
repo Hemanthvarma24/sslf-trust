@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "SSLF EDUCATIONAL TRUST",
-  description: "We help people in need",
+  description: "SSLF Charity Trust empowers youth through scholarships, healthcare, and entrepreneurship support. Join us in creating a better future – You Need Us!",
+  keywords: "SSLF Educational Trust, SSLF Charity Trust, nonprofit organization, community service, social initiatives, education support, youth empowerment, scholarships, healthcare programs, entrepreneurship development, charitable trust, community upliftment, social welfare, nonprofit education, skill development, youth mentoring"
 };
 
 export default function RootLayout({

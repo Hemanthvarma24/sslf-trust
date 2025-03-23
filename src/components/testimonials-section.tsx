@@ -74,10 +74,9 @@ const TestimonialCarousel = () => {
       </div>
 
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between z-10 px-6">
-        <div className="md:w-1/2 text-white text-left">
+        <div className="md:w-1/2 text-[#0b0a45] text-left">
           <h2 className="text-4xl  font-bold mb-4">TESTIMONIALS</h2>
           <p className="text-lg mb-6">See what our satisfied customers have to say about us.</p>
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-lg">Read More</button>
         </div>
 
         <div className="md:w-1/2 bg-white rounded-lg shadow-lg p-6 relative">
