@@ -25,7 +25,7 @@ import awstwo from "@/assets/news&Events/awarenessprogram/four.jpg"
 import awsthree from "@/assets/news&Events/awarenessprogram/piccc.jpg"
 import awsfour from "@/assets/news&Events/awarenessprogram/three.jpg"
 import awsfive from "@/assets/news&Events/awarenessprogram/neww.jpg"
-import awssix from "@/assets/news&Events/awarenessprogram/five.jpg"
+import awssix from "@/assets/news&Events/awarenessprogram/IMG-20250328-WA0024.jpg"
 
 // Vocational training images
 import vtcone from "@/assets/news&Events/vocialtraning/book.jpg"

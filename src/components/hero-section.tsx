@@ -9,7 +9,7 @@ import img1 from "@/assets/homepage/img1.jpg";
 import img2 from "@/assets/homepage/img2.jpg";
 import img7 from "@/assets/homepage/WhatsAppImage 2025-03-19.jpg";
 import img3 from "@/assets/homepage/img3.jpg";
-import img5 from "@/assets/homepage/img5.jpg";
+import img5 from "@/assets/news&Events/awarenessprogram/IMG-20250328-WA0024.jpg";
 import img6 from "@/assets/homepage/img6.jpg";
 
 const images = [img1, img2, img7, img3,  img5, img6];

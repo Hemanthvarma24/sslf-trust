@@ -7,6 +7,7 @@ import type { CarouselApi } from "@/components/ui/carousel"
 import awsone from "@/assets/news&Events/awarenessprogram/0ne.jpg"
 import awstwo from "@/assets/news&Events/awarenessprogram/four.jpg"
 import awsthree from "@/assets/news&Events/awarenessprogram/piccc.jpg"
+import awsfour from "@/assets/news&Events/awarenessprogram/IMG-20250328-WA0033.jpg"
 
 export default function AwarenessProgramsPage() {
   const [api, setApi] = useState<CarouselApi>()
@@ -45,7 +46,7 @@ export default function AwarenessProgramsPage() {
               className="w-full rounded-lg overflow-hidden shadow-lg"
             >
               <CarouselContent>
-                {[awsone,awstwo,awsthree].map((src, index) => (
+                {[awsone,awstwo,awsthree,awsfour].map((src, index) => (
                   <CarouselItem key={index}>
                     <div className="relative h-[300px] md:h-[400px] w-full">
                       <Image

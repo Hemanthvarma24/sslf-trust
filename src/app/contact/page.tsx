@@ -46,7 +46,8 @@ export default function ContactUs() {
             </div>
             <div className="flex items-start space-x-3 p-3">
               <FaMapMarkerAlt className="text-[#0b0a46] text-xl mt-1" />
-              <span className="text-gray-700 font-medium">210, Defence Colony 15th Cross St, Defence Colony, Ekkatuthangal, Chennai, Tamil Nadu 600032</span>
+              <span className="text-gray-700 font-medium">No:1/210,Defence Colony, 15th Cross Street,Ekkattuthangal,
+Chennai -600032,INDIA</span>
             </div>
           </div>
           
