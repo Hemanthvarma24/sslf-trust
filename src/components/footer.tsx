@@ -51,7 +51,7 @@ export default function Footer() {
                   className="hover:text-blue-300 transition-colors"
                 />
               </Link>
-              <Link href="https://g.co/kgs/nyGwZye" target="_blank">
+              <Link href="https://g.co/kgs/QCeJuQ7" target="_blank">
                 <Globe
                   size={24}
                   className="hover:text-blue-300 transition-colors"

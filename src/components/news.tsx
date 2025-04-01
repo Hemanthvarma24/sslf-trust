@@ -172,9 +172,9 @@ export default function NewsEventsSection() {
     },
     {
       id: 17,
-      title: "Public Health Awareness",
+      title: "Environmental Protection Drive",
       category: "AWARENESS PROGRAM",
-      image: awsfive,
+      image: aws,
     },
     {
       id: 18,
@@ -216,9 +216,9 @@ export default function NewsEventsSection() {
     },
     {
       id: 32,
-      title: "Environmental Protection Drive",
+      title: "Public Health Awareness",
       category: "AWARENESS PROGRAM",
-      image: aws,
+      image: awsfive,
     },
 
     // Vocational Training items
