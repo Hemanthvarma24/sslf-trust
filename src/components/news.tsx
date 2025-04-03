@@ -25,7 +25,7 @@ import awstwo from "@/assets/news&Events/awarenessprogram/four.jpg";
 import awsthree from "@/assets/news&Events/awarenessprogram/piccc.jpg";
 import awsfour from "@/assets/news&Events/awarenessprogram/three.jpg";
 import awsfive from "@/assets/news&Events/awarenessprogram/neww.jpg";
-import awssix from "@/assets/news&Events/awarenessprogram/IMG-20250328-WA0024.jpg";
+import awssix from "@/assets/news&Events/awarenessprogram/WhatsApp Image 2025-04-03 at 14.49.25_7fb9aa05.jpg";
 import awsseven from "@/assets/news&Events/awarenessprogram/awsseven.jpg";
 import awseight from "@/assets/news&Events/awarenessprogram/awseight.jpg";
 import awsnine from "@/assets/news&Events/awarenessprogram/awsnine.jpg";
@@ -43,10 +43,10 @@ import vtcfive from "@/assets/news&Events/vocialtraning/eead60c9-b045-4864-bbb6-
 // Training images
 import trainingone from "@/assets/news&Events/training/IMG-20250328-WA0023.jpg";
 import trainingtwo from "@/assets/news&Events/training/IMG-20250328-WA0024.jpg";
-import trainingthree from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg";
-import trainingfour from "@/assets/news&Events/training/WhatsApp Image 2025-04-02 at 17.11.02_c12ee7c5.jpg";
-import trainingfive from "@/assets/news&Events/training/WhatsApp Image 2025-04-02 at 17.11.03_8ac057e0.jpg";
-import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg";
+import trainingthree from "@/assets/news&Events/training/IMG-20250328-WA0025.jpg";
+import trainingfour from "@/assets/news&Events/training/IMG-20250328-WA0033.jpg";
+import trainingfive from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg";
+import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg";
 
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg";
@@ -72,7 +72,7 @@ export default function NewsEventsSection() {
     "MEDICAL CAMP",
     "AWARENESS PROGRAM",
     "VOCATIONAL TRAINING",
-    "TRAINING",
+    "TRAINING PROGRAM",
     "DONATE PROGRAM",
   ];
 
@@ -225,7 +225,7 @@ export default function NewsEventsSection() {
     },
     {
       id: 32,
-      title: "Public Health Awareness",
+      title: "Awareness",
       category: "AWARENESS PROGRAM",
       image: awsfive,
     },
@@ -245,7 +245,7 @@ export default function NewsEventsSection() {
     },
     {
       id: 21,
-      title: "Handicraft Training Session",
+      title: "Teacher Training",
       category: "VOCATIONAL TRAINING",
       image: vtcthree,
     },
@@ -262,41 +262,41 @@ export default function NewsEventsSection() {
       image: vtcfive,
     },
     
-    // Training items
+    // Training Program items - Fixed category name to match the menu
     {
       id: 33,
       title: "Leadership Development Program",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingone,
     },
     {
       id: 34,
       title: "Professional Skills Workshop",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingtwo,
     },
     {
       id: 35,
       title: "Community Leadership Training",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingthree,
     },
     {
       id: 36,
       title: "Specialized Skills Development",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingfour,
     },
     {
       id: 37,
       title: "Train the Trainer Program",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingfive,
     },
     {
       id: 38,
       title: "Career Development Workshop",
-      category: "TRAINING",
+      category: "TRAINING PROGRAM",
       image: trainingsix,
     },
 
@@ -328,6 +328,10 @@ export default function NewsEventsSection() {
   // For awareness program auto-sliding
   const awarenessItems = newsItems.filter(item => item.category === "AWARENESS PROGRAM");
   const [awarenessImagePairs, setAwarenessImagePairs] = useState<AwarenessImagePair[]>([]);
+
+  // For image popup functionality
+  const [selectedImage, setSelectedImage] = useState<NewsItem | null>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
   
   // Initialize the 6 grid positions with image pairs
   useEffect(() => {
@@ -362,6 +366,28 @@ export default function NewsEventsSection() {
     
     return () => clearInterval(timer);
   }, [activeCategory]);
+
+  // Close popup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        setSelectedImage(null);
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener("mousedown", handleClickOutside);
+      // Prevent body scroll when popup is open
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "auto";
+    }
+  }, [selectedImage]);
 
   // Get displayed items based on category and pagination
   const getDisplayedItems = () => {
@@ -426,6 +452,18 @@ export default function NewsEventsSection() {
     }
   }, [activeCategory]);
 
+  // Handler for Escape key to close popup
+  useEffect(() => {
+    const handleEscKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleEscKey);
+    return () => window.removeEventListener("keydown", handleEscKey);
+  }, []);
+
   return (
     <section className="py-10 md:py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -464,7 +502,8 @@ export default function NewsEventsSection() {
           {displayedItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className="relative rounded-lg overflow-hidden shadow-lg group h-44 sm:h-56 md:h-64 lg:h-72 transition-transform hover:scale-[1.02] duration-300"
+              className="relative rounded-lg overflow-hidden shadow-lg group h-44 sm:h-56 md:h-64 lg:h-72 transition-transform hover:scale-[1.02] duration-300 cursor-pointer"
+              onClick={() => setSelectedImage(item)}
             >
               <div className="relative w-full h-full overflow-hidden">
                 <Image
@@ -477,9 +516,7 @@ export default function NewsEventsSection() {
                   }`}
                   priority={item.id <= 6}
                 />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              
             </div>
           ))}
         </div>
@@ -537,6 +574,50 @@ export default function NewsEventsSection() {
           </div>
         )}
       </div>
+
+      {/* Image Popup/Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+          <div 
+            ref={popupRef} 
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+          >
+            <div className="p-4 border-b flex justify-between items-center">
+              <h3 className="font-bold text-lg text-gray-800">{selectedImage.title}</h3>
+              <button 
+                onClick={() => setSelectedImage(null)}
+                className="text-gray-500 hover:text-gray-700 rounded-full h-8 w-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors"
+              >
+                <span className="sr-only">Close</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="flex-1 overflow-auto p-4 flex items-center justify-center bg-gray-100">
+              <div className="relative h-[60vh] w-full">
+                <Image
+                  src={selectedImage.image}
+                  alt={selectedImage.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                  priority
+                />
+              </div>
+            </div>
+            
+            <div className="p-4 border-t">
+              <div className="text-sm text-gray-600">
+                <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                  {selectedImage.category}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
