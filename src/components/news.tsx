@@ -34,11 +34,19 @@ import awseleven from "@/assets/news&Events/awarenessprogram/awseleven.jpg";
 import aws from "@/assets/news&Events/awarenessprogram/aws.jpg";
 
 // Vocational training images
-import vtcone from "@/assets/news&Events/vocialtraning/book.jpg";
-import vtctwo from "@/assets/news&Events/vocialtraning/WhatsApp Image 2025-03-11 at 17.16.59_9c6af3fb.jpg";
-import vtcthree from "@/assets/news&Events/vocialtraning/fce931b8-20de-4f76-838a-45e7316b04d3.jpg";
-import vtcfour from "@/assets/news&Events/vocialtraning/f306a458-a933-490f-aca8-6ab1dba2837a.jpg";
+import vtcone from "@/assets/news&Events/vocialtraning/vtcopen.jpg";
+import vtctwo from "@/assets/news&Events/vocialtraning/fce931b8-20de-4f76-838a-45e7316b04d3.jpg";
+import vtcthree from "@/assets/news&Events/vocialtraning/vtc-center.jpg";
+// import vtcfour from "@/assets/news&Events/vocialtraning/f306a458-a933-490f-aca8-6ab1dba2837a.jpg";
 import vtcfive from "@/assets/news&Events/vocialtraning/eead60c9-b045-4864-bbb6-20957869fd26.jpg";
+
+// Training images
+import trainingone from "@/assets/news&Events/training/IMG-20250328-WA0023.jpg";
+import trainingtwo from "@/assets/news&Events/training/IMG-20250328-WA0024.jpg";
+import trainingthree from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg";
+import trainingfour from "@/assets/news&Events/training/WhatsApp Image 2025-04-02 at 17.11.02_c12ee7c5.jpg";
+import trainingfive from "@/assets/news&Events/training/WhatsApp Image 2025-04-02 at 17.11.03_8ac057e0.jpg";
+import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg";
 
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg";
@@ -64,6 +72,7 @@ export default function NewsEventsSection() {
     "MEDICAL CAMP",
     "AWARENESS PROGRAM",
     "VOCATIONAL TRAINING",
+    "TRAINING",
     "DONATE PROGRAM",
   ];
 
@@ -240,17 +249,55 @@ export default function NewsEventsSection() {
       category: "VOCATIONAL TRAINING",
       image: vtcthree,
     },
-    {
-      id: 22,
-      title: "Youth Employment Training",
-      category: "VOCATIONAL TRAINING",
-      image: vtcfour,
-    },
+    // {
+    //   id: 22,
+    //   title: "Youth Employment Training",
+    //   category: "VOCATIONAL TRAINING",
+    //   image: vtcfour,
+    // },
     {
       id: 23,
       title: "Women Empowerment Workshop",
       category: "VOCATIONAL TRAINING",
       image: vtcfive,
+    },
+    
+    // Training items
+    {
+      id: 33,
+      title: "Leadership Development Program",
+      category: "TRAINING",
+      image: trainingone,
+    },
+    {
+      id: 34,
+      title: "Professional Skills Workshop",
+      category: "TRAINING",
+      image: trainingtwo,
+    },
+    {
+      id: 35,
+      title: "Community Leadership Training",
+      category: "TRAINING",
+      image: trainingthree,
+    },
+    {
+      id: 36,
+      title: "Specialized Skills Development",
+      category: "TRAINING",
+      image: trainingfour,
+    },
+    {
+      id: 37,
+      title: "Train the Trainer Program",
+      category: "TRAINING",
+      image: trainingfive,
+    },
+    {
+      id: 38,
+      title: "Career Development Workshop",
+      category: "TRAINING",
+      image: trainingsix,
     },
 
     // Donate Program items
@@ -310,7 +357,7 @@ export default function NewsEventsSection() {
             currentIndex: pair.currentIndex === 0 ? 1 : 0 // Toggle between 0 and 1
           }))
         );
-      }, 4000); // Switch every 3 seconds
+      }, 4000); // Switch every 4 seconds
     }
     
     return () => clearInterval(timer);
@@ -468,7 +515,17 @@ export default function NewsEventsSection() {
               ))}
             </div>
             
-            
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-1 rounded-md ${
+                currentPage === totalPages
+                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                  : "bg-blue-900 text-white hover:bg-blue-800"
+              }`}
+            >
+              &gt;
+            </button>
           </div>
         )}
 
