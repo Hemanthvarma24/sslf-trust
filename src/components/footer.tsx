@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
@@ -14,136 +15,132 @@ import {
 } from "lucide-react";
 import logo from "@/assets/sslf.png";
 
-export default function Footer() {
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const Footer = () => {
   return (
-    <footer className="bg-[#0b0a46] text-white py-4">
-      <div className="container mx-auto px-6">
-        {/* Content grid with logo in first column */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Logo and description - consistently left-aligned */}
-          <div className="flex flex-col items-start">
+    <footer className="bg-[#0b0a46] text-white pt-10 pb-4">
+      <motion.div
+        className="container mx-auto px-4 md:px-6"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 items-start">
+          {/* Logo and Socials */}
+          <motion.div variants={fadeInUp} className="flex flex-col gap-4">
             <Link href="/">
               <Image
-                src={logo || "/placeholder.svg"}
-                alt="Logo"
-                width={160}
-                height={60}
-                className="max-w-[160px]"
+                src={logo}
+                alt="SSLF Educational Trust Logo"
+                width={150}
+                height={50}
+                className="rounded"
               />
             </Link>
-            {/* Social Media Links */}
-            <div className="ml-6 flex space-x-4">
+            <div className="flex gap-4 ml-1">
               <Link
                 href="https://www.instagram.com/sslfeducationaltrust?igsh=Mm9vanBmbnExbjU3"
                 target="_blank"
               >
-                <Instagram
-                  size={24}
-                  className="hover:text-blue-300 transition-colors"
-                />
+                <Instagram className="hover:text-blue-300 transition duration-300" />
               </Link>
               <Link
                 href="https://www.facebook.com/share/1E62VrBKAQ/"
                 target="_blank"
               >
-                <Facebook
-                  size={24}
-                  className="hover:text-blue-300 transition-colors"
-                />
+                <Facebook className="hover:text-blue-300 transition duration-300" />
               </Link>
               <Link href="https://g.co/kgs/QCeJuQ7" target="_blank">
-                <Globe
-                  size={24}
-                  className="hover:text-blue-300 transition-colors"
-                />
+                <Globe className="hover:text-blue-300 transition duration-300" />
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Business Hours */}
-          <div className="text-left mt-4 md:mt-0">
+          {/* Trust Hours */}
+          <motion.div variants={fadeInUp} className="text-left">
             <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
               <Clock size={18} /> Trust Hours
             </h3>
-            <p className="text-sm">
-              Monday to Friday <br /> 10:00 AM - 07:00 PM
+            <p className="text-sm leading-relaxed">
+              Monday to Friday <br />
+              10:00 AM - 07:00 PM
             </p>
-            <p className="text-sm text-gray-400">All branches of the company</p>
-          </div>
+            <p className="text-xs text-gray-400 mt-1">
+              All branches of the company
+            </p>
+          </motion.div>
 
-          {/* Additional Links */}
-          <div className="text-left mt-4 md:mt-0">
+          {/* Join Us Links */}
+          <motion.div variants={fadeInUp} className="text-left">
             <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
               <Heart size={18} /> Be A Part of Us
             </h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/volunteer"
-                  className="text-sm hover:text-blue-300 transition-colors"
-                >
-                  Be a Volunteer
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/donate"
-                  className="text-sm hover:text-blue-300 transition-colors"
-                >
-                  Donation
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/corporate"
-                  className="text-sm hover:text-blue-300 transition-colors"
-                >
-                  Corporate
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/education"
-                  className="text-sm hover:text-blue-300 transition-colors"
-                >
-                  Education
-                </Link>
-              </li>
+            <ul className="space-y-2 text-sm">
+              {[
+                { href: "/volunteer", label: "Be a Volunteer" },
+                { href: "/donate", label: "Donation" },
+                { href: "/corporate", label: "Corporate" },
+                { href: "/education", label: "Education" },
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-blue-300 transition duration-300"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Contact Information */}
-          <div className="text-left mt-4 md:mt-0">
+          {/* Contact Info */}
+          <motion.div variants={fadeInUp} className="text-left">
             <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
               Contact Us
             </h3>
-            <p className="text-sm flex items-start gap-2 mb-2">
-              <Phone size={16} className="flex-shrink-0 mt-0.5" />{" "}
-              <span>
-                <strong>Phone:</strong> 9094099940
-              </span>
-            </p>
-            <p className="text-sm flex items-start gap-2 mb-2">
-              <Mail size={16} className="flex-shrink-0 mt-0.5" />{" "}
-              <span>
-                <strong>Email:</strong> edu@sslftrust.com
-              </span>
-            </p>
-            <p className="text-sm flex items-start gap-2">
-              <MapPin size={16} className="mt-1 flex-shrink-0" />
-              <span>
-                <strong>Address:</strong> No:1/210, Defence Colony, 15th Cross
-                Street,Ekkattuthangal, Chennai-600032,INDIA
-              </span>
-            </p>
-          </div>
+            <div className="text-sm space-y-2">
+              <div className="flex items-start gap-2">
+                <Phone size={16} className="mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong>Phone:</strong> 9094099940
+                </span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Mail size={16} className="mt-0.5 flex-shrink-0" />
+                <span>
+                  <strong>Email:</strong> edu@sslftrust.com
+                </span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+                <span>
+                  <strong>Address:</strong> No:1/210, Defence Colony, 15th Cross
+                  Street, Ekkattuthangal, Chennai - 600032, INDIA
+                </span>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Footer Bottom */}
-      <div className="border-t border-gray-700 mt-6 pt-2 text-sm text-gray-300 px-4 text-center">
+      <div className="border-t border-gray-700 mt-10 pt-4 text-sm text-center text-gray-300 px-4">
         COPYRIGHT © {new Date().getFullYear()}. ALL RIGHTS RESERVED.
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

@@ -2,42 +2,43 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import bgimg from "@/assets/testimonial/steptodown.com264913.jpg";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Deepika",
+    testimonial:
+      "Being a part of SSLF Educational Trust has been life-changing. The mentorship, scholarships, and quality education have helped me achieve my dreams. I am forever grateful!",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Krishna",
+    testimonial:
+      "The trust provided me with not just education, but also confidence and a platform to grow. The faculty and programs are truly exceptional.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Kalaivani",
+    testimonial:
+      "I am thankful to SSLF EDUCATIONAL TRUST for giving my child the best education possible. The values, discipline, and academic excellence they instill are commendable.",
+    rating: 4,
+  },
+  {
+    id: 4,
+    name: "Anbualagan",
+    testimonial:
+      "More than just academics, this trust fosters creativity, leadership, and personal growth. My child is now ready for a bright future!",
+    rating: 5,
+  },
+];
 
 const TestimonialCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(2);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Deepika",
-      testimonial:
-        "Being a part of SSLF Educational Trust has been life-changing. The mentorship, scholarships, and quality education have helped me achieve my dreams. I am forever grateful!",
-      rating: 5,
-    },
-    {
-      id: 2,
-      name: "Krishna",
-      testimonial:
-        "The trust provided me with not just education, but also confidence and a platform to grow. The faculty and programs are truly exceptional.",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Kalaivani",
-      testimonial:
-        "I am thankful to SSLF EDUCATIONAL TRUST for giving my child the best education possible. The values, discipline, and academic excellence they instill are commendable.",
-      rating: 4,
-    },
-    {
-      id: 4,
-      name: "Anbualagan",
-      testimonial:
-        "More than just academics, this trust fosters creativity, leadership, and personal growth. My child is now ready for a bright future!",
-      rating: 5,
-    },
-  ];
 
   useEffect(() => {
     const updateItemsToShow = () => {
@@ -48,18 +49,14 @@ const TestimonialCarousel = () => {
     return () => window.removeEventListener("resize", updateItemsToShow);
   }, []);
 
-  // Auto-sliding effect
   useEffect(() => {
     const autoSlideInterval = setInterval(() => {
-      // Calculate the next index
       const nextIndex = activeIndex + itemsToShow;
       const resetIndex = nextIndex >= testimonials.length ? 0 : nextIndex;
       setActiveIndex(resetIndex);
-    }, 5000); // Change slide every 5 seconds
-
-    // Clear interval on component unmount or when dependencies change
+    }, 5000);
     return () => clearInterval(autoSlideInterval);
-  }, [activeIndex, itemsToShow, testimonials.length]);
+  }, [activeIndex, itemsToShow]);
 
   const handleDotClick = (index: number) => {
     setActiveIndex(index * itemsToShow);
@@ -70,9 +67,9 @@ const TestimonialCarousel = () => {
   };
 
   const renderStars = (rating: number) => (
-    <div className="flex">
+    <div className="flex justify-center mt-2">
       {[...Array(5)].map((_, i) => (
-        <span key={i} className="text-yellow-400 text-lg">
+        <span key={i} className="text-yellow-400 text-base">
           {i < rating ? "★" : "☆"}
         </span>
       ))}
@@ -80,36 +77,53 @@ const TestimonialCarousel = () => {
   );
 
   return (
-    <div className="w-full py-12 flex flex-col items-center relative min-h-[500px]">
-      <div className="absolute inset-0">
+    <section className="relative w-full py-16 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
         <Image src={bgimg} alt="Background" layout="fill" objectFit="cover" quality={100} />
+        <div className="absolute inset-0 bg-white/40"></div>
       </div>
 
-      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between z-10 px-6">
-        <div className="md:w-1/2 text-[#0b0a45] text-left">
-          <h2 className="text-4xl font-bold mb-4">TESTIMONIALS</h2>
-          <p className="text-lg mb-6">See what our satisfied customers have to say about us.</p>
-        </div>
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0b0a45] mb-4">TESTIMONIALS</h2>
+          <p className="text-gray-700 text-lg">See what our satisfied customers have to say about us.</p>
+        </motion.div>
 
-        <div className="md:w-1/2 bg-white rounded-lg shadow-lg p-6 relative">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {testimonials.slice(activeIndex, activeIndex + itemsToShow).map((testimonial) => (
-              <div key={testimonial.id} className="bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center h-auto">
-                <h3 className="text-lg font-semibold text-gray-800">{testimonial.name}</h3>
-                <div className="w-16 h-1 bg-purple-800 my-3"></div>
-                <p className="text-gray-600 text-center text-sm">{testimonial.testimonial}</p>
-                <div className="mt-4">{renderStars(testimonial.rating)}</div>
-              </div>
+        <div className="relative z-10">
+          {/* Fixed grid spacing with proper gap and responsive alignment */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {testimonials.slice(activeIndex, activeIndex + itemsToShow).map((testimonial, index) => (
+              <motion.div
+                key={testimonial.id}
+                className="bg-white p-4 md:p-6 rounded-xl shadow-2xl transform transition duration-500 hover:scale-105 mx-auto w-full"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-lg font-semibold text-[#0b0a45] text-center">{testimonial.name}</h3>
+                <div className="w-12 h-1 bg-purple-800 my-2 mx-auto"></div>
+                <p className="text-gray-600 text-sm text-center leading-relaxed">{testimonial.testimonial}</p>
+                {renderStars(testimonial.rating)}
+              </motion.div>
             ))}
           </div>
 
-          <div className="flex justify-center mt-6">
+          {/* Pagination Dots */}
+          <div className="flex justify-center mt-8 space-x-2">
             {[...Array(getNumberOfDots())].map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`mx-1 w-3 h-3 rounded-full transition-colors duration-300 ${
-                  Math.floor(activeIndex / itemsToShow) === index ? "bg-gray-800" : "bg-gray-300"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  Math.floor(activeIndex / itemsToShow) === index ? "bg-purple-800" : "bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
@@ -117,7 +131,7 @@ const TestimonialCarousel = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

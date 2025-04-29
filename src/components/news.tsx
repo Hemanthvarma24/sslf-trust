@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 // Scholarship images
 import imgone from "@/assets/news&Events/scholaship/IMG-20250311-WA0108.jpg";
@@ -73,6 +74,7 @@ export default function NewsEventsSection() {
     "AWARENESS PROGRAM",
     "VOCATIONAL TRAINING",
     "TRAINING PROGRAM",
+    "NEW EVENTS",
     "DONATE PROGRAM",
   ];
 
@@ -191,7 +193,7 @@ export default function NewsEventsSection() {
       category: "AWARENESS PROGRAM",
       image: awssix,
     },
-    
+
     // Awareness Program items - second set
     {
       id: 27,
@@ -261,7 +263,7 @@ export default function NewsEventsSection() {
       category: "VOCATIONAL TRAINING",
       image: vtcfive,
     },
-    
+
     // Training Program items - Fixed category name to match the menu
     {
       id: 33,
@@ -324,15 +326,19 @@ export default function NewsEventsSection() {
   const [activeCategory, setActiveCategory] = useState<string>("SCHOLARSHIP");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 6;
-  
+
   // For awareness program auto-sliding
-  const awarenessItems = newsItems.filter(item => item.category === "AWARENESS PROGRAM");
-  const [awarenessImagePairs, setAwarenessImagePairs] = useState<AwarenessImagePair[]>([]);
+  const awarenessItems = newsItems.filter(
+    (item) => item.category === "AWARENESS PROGRAM"
+  );
+  const [awarenessImagePairs, setAwarenessImagePairs] = useState<
+    AwarenessImagePair[]
+  >([]);
 
   // For image popup functionality
   const [selectedImage, setSelectedImage] = useState<NewsItem | null>(null);
   const popupRef = useRef<HTMLDivElement>(null);
-  
+
   // Initialize the 6 grid positions with image pairs
   useEffect(() => {
     if (activeCategory === "AWARENESS PROGRAM") {
@@ -348,29 +354,32 @@ export default function NewsEventsSection() {
       setAwarenessImagePairs(pairs);
     }
   }, [activeCategory]);
-  
+
   // Auto-slide timer for awareness program
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    
+
     if (activeCategory === "AWARENESS PROGRAM") {
       timer = setInterval(() => {
-        setAwarenessImagePairs(prev => 
-          prev.map(pair => ({
+        setAwarenessImagePairs((prev) =>
+          prev.map((pair) => ({
             ...pair,
-            currentIndex: pair.currentIndex === 0 ? 1 : 0 // Toggle between 0 and 1
+            currentIndex: pair.currentIndex === 0 ? 1 : 0, // Toggle between 0 and 1
           }))
         );
       }, 4000); // Switch every 4 seconds
     }
-    
+
     return () => clearInterval(timer);
   }, [activeCategory]);
 
   // Close popup when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
         setSelectedImage(null);
       }
     };
@@ -386,27 +395,27 @@ export default function NewsEventsSection() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "auto";
-    }
+    };
   }, [selectedImage]);
 
   // Get displayed items based on category and pagination
   const getDisplayedItems = () => {
     if (activeCategory === "AWARENESS PROGRAM") {
       // For awareness program, return the current visible images
-      return awarenessImagePairs.map(pair => pair.images[pair.currentIndex]);
+      return awarenessImagePairs.map((pair) => pair.images[pair.currentIndex]);
     } else {
       // For other categories, use normal pagination
       const filteredItems = newsItems.filter(
         (item) => item.category === activeCategory
       );
-      
+
       return filteredItems.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
       );
     }
   };
-  
+
   // Calculate total pages for pagination
   const getTotalPages = () => {
     if (activeCategory === "AWARENESS PROGRAM") {
@@ -418,10 +427,10 @@ export default function NewsEventsSection() {
       return Math.ceil(filteredItems.length / itemsPerPage);
     }
   };
-  
+
   const displayedItems = getDisplayedItems();
   const totalPages = getTotalPages();
-  
+
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Reset pagination when category changes
@@ -465,159 +474,246 @@ export default function NewsEventsSection() {
   }, []);
 
   return (
-    <section className="py-10 md:py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
-          <h2 className="text-2xl text-[#0b0a45] md:text-4xl font-bold">
-            NEWS & EVENTS
-          </h2>
-        </div>
+    <motion.section
+      className="py-10 md:py-16 bg-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div
+        className="text-center mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-2xl text-[#0b0a45] md:text-4xl font-bold">
+          NEWS & EVENTS
+        </h2>
+      </motion.div>
 
-        {/* Centered menu container for desktop, scrollable for mobile */}
-        <div className="relative mb-8 flex justify-center">
-          <div
-            ref={menuRef}
-            className="flex md:max-w-fit mx-auto overflow-x-auto scrollbar-hide gap-3 py-2 px-1 scroll-smooth snap-x"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {categories.map((category) => (
-              <button
-                key={category}
-                data-category={category}
-                className={`px-4 py-2 text-xs md:text-sm font-semibold border rounded-md transition-all whitespace-nowrap flex-shrink-0 snap-start ${
-                  activeCategory === category
-                    ? "bg-blue-900 text-white shadow-md"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Image grid - 2 columns on mobile, 3 columns on desktop with object-contain */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
-          {displayedItems.map((item, index) => (
-            <div
-              key={`${item.id}-${index}`}
-              className="relative rounded-lg overflow-hidden shadow-lg group h-44 sm:h-56 md:h-64 lg:h-72 transition-transform hover:scale-[1.02] duration-300 cursor-pointer"
-              onClick={() => setSelectedImage(item)}
+      {/* Centered menu container for desktop, scrollable for mobile */}
+      <motion.div
+        className="relative mb-8 flex justify-center"
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <div
+          ref={menuRef}
+          className="flex md:max-w-fit mx-auto overflow-x-auto scrollbar-hide gap-3 py-2 px-1 scroll-smooth snap-x"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              data-category={category}
+              className={`px-4 py-2 text-xs md:text-sm font-semibold border rounded-md transition-all whitespace-nowrap flex-shrink-0 snap-start ${
+                activeCategory === category
+                  ? "bg-blue-900 text-white shadow-md"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => setActiveCategory(category)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="relative w-full h-full overflow-hidden">
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 33vw"
-                  className={`object-contain w-full h-full p-1 transition-all duration-500 ${
-                    activeCategory === "AWARENESS PROGRAM" ? "group-hover:scale-110" : "group-hover:scale-110"
-                  }`}
-                  priority={item.id <= 6}
-                />
-              </div>
-            </div>
+              {category}
+            </motion.button>
           ))}
         </div>
+      </motion.div>
 
-        {/* Pagination controls - Only show if needed */}
-        {totalPages > 1 && (
-          <div className="flex justify-center items-center mt-8 gap-2">
-            <button
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className={`px-3 py-1 rounded-md ${
-                currentPage === 1
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-blue-900 text-white hover:bg-blue-800"
-              }`}
-            >
-              &lt;
-            </button>
-            
-            <div className="flex items-center gap-1">
-              {[...Array(totalPages)].map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`w-8 h-8 flex items-center justify-center rounded-md ${
-                    currentPage === i + 1
-                      ? "bg-blue-900 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
+      {/* Image grid - 2 columns on mobile, 3 columns on desktop with object-contain */}
+      <motion.div
+        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+      >
+        {displayedItems.map((item, index) => (
+          <motion.div
+            key={`${item.id}-${index}`}
+            className="relative rounded-lg overflow-hidden shadow-lg group h-44 sm:h-56 md:h-64 lg:h-72 transition-transform hover:scale-[1.02] duration-300 cursor-pointer"
+            onClick={() => setSelectedImage(item)}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{
+              duration: 0.5,
+              delay: (index * 0.1) % 0.6, // Cap the delay at 0.6s to avoid too long delays
+              ease: "easeOut",
+            }}
+          >
+            <div className="relative w-full h-full overflow-hidden">
+              <Image
+                src={item.image || "/placeholder.svg"}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 33vw"
+                className={`object-contain w-full h-full p-1 transition-all duration-500 ${
+                  activeCategory === "AWARENESS PROGRAM"
+                    ? "group-hover:scale-110"
+                    : "group-hover:scale-110"
+                }`}
+                priority={item.id <= 6}
+              />
             </div>
-            
-            <button
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className={`px-3 py-1 rounded-md ${
-                currentPage === totalPages
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-blue-900 text-white hover:bg-blue-800"
-              }`}
-            >
-              &gt;
-            </button>
-          </div>
-        )}
+          </motion.div>
+        ))}
+      </motion.div>
 
-        {displayedItems.length === 0 && (
-          <div className="text-center py-10">
-            <p className="text-gray-500">
-              No events available in this category yet.
-            </p>
+      {/* Pagination controls - Only show if needed */}
+      {totalPages > 1 && (
+        <motion.div
+          className="flex justify-center items-center mt-8 gap-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-3 py-1 rounded-md ${
+              currentPage === 1
+                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                : "bg-blue-900 text-white hover:bg-blue-800"
+            }`}
+            whileHover={currentPage !== 1 ? { scale: 1.1 } : {}}
+            whileTap={currentPage !== 1 ? { scale: 0.9 } : {}}
+          >
+            &lt;
+          </motion.button>
+
+          <div className="flex items-center gap-1">
+            {[...Array(totalPages)].map((_, i) => (
+              <motion.button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`w-8 h-8 flex items-center justify-center rounded-md ${
+                  currentPage === i + 1
+                    ? "bg-blue-900 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {i + 1}
+              </motion.button>
+            ))}
           </div>
-        )}
-      </div>
+
+          <motion.button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className={`px-3 py-1 rounded-md ${
+              currentPage === totalPages
+                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                : "bg-blue-900 text-white hover:bg-blue-800"
+            }`}
+            whileHover={currentPage !== totalPages ? { scale: 1.1 } : {}}
+            whileTap={currentPage !== totalPages ? { scale: 0.9 } : {}}
+          >
+            &gt;
+          </motion.button>
+        </motion.div>
+      )}
+
+      {displayedItems.length === 0 && (
+        <motion.div
+          className="text-center py-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-gray-500">
+            No events available in this category yet.
+          </p>
+        </motion.div>
+      )}
 
       {/* Image Popup/Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
-          <div 
-            ref={popupRef} 
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            ref={popupRef}
             className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             <div className="p-4 border-b flex justify-between items-center">
-              <h3 className="font-bold text-lg text-gray-800">{selectedImage.title}</h3>
-              <button 
+              <h3 className="font-bold text-lg text-gray-800">
+                {selectedImage.title}
+              </h3>
+              <motion.button
                 onClick={() => setSelectedImage(null)}
                 className="text-gray-500 hover:text-gray-700 rounded-full h-8 w-8 flex items-center justify-center bg-gray-100 hover:bg-gray-200 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <span className="sr-only">Close</span>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
-              </button>
+              </motion.button>
             </div>
-            
-            <div className="flex-1 overflow-auto p-4 flex items-center justify-center bg-gray-100">
-              <div className="relative h-[60vh] w-full">
+
+            <div className="flex-1 overflow-auto p-4 flex items-center justify-center bg-white">
+              <motion.div
+                className="relative h-[60vh] w-full"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <Image
-                  src={selectedImage.image}
+                  src={selectedImage.image || "/placeholder.svg"}
                   alt={selectedImage.title}
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 80vw"
                   priority
                 />
-              </div>
+              </motion.div>
             </div>
-            
+
             <div className="p-4 border-t">
-              <div className="text-sm text-gray-600">
+              <motion.div
+                className="text-sm text-gray-600"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
                 <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
                   {selectedImage.category}
                 </span>
-              </div>
+              </motion.div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
-    </section>
+    </motion.section>
   );
 }
