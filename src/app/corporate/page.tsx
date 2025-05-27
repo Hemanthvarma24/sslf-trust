@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import Image from "next/image";
+import bg from "@/assets/bg_1.jpg"
 
 type ContributionType =
   | "Financial Donation"
@@ -130,8 +132,17 @@ export default function CorporatePartnership() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center mt-8 p-6 py-16">
-      <Card className="w-full max-w-2xl shadow-sm">
+    <div className="relative min-h-screen flex items-center justify-center px-4 py-12">
+      {/* Background Image */}
+      <Image
+        src={bg}
+        alt="Background"
+        className="fixed inset-0 w-full h-full object-cover z-[-1]"
+        priority
+      />
+
+      {/* Card Container */}
+      <Card className="w-full max-w-3xl mx-auto shadow-lg rounded-lg bg-white mt-14 mb-8">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">Corporate Partnership</CardTitle>
           <CardDescription className="text-center">

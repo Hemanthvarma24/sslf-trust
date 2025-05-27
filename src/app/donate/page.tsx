@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
 import {
   Card,
@@ -14,13 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import Image from "next/image";
+import bg from "@/assets/bg_1.jpg"
 
 interface FormData {
   fullName: string;
@@ -29,7 +23,6 @@ interface FormData {
   email: string;
   phone: string;
   amount: string;
-  paymentMethod: string;
   message: string;
 }
 
@@ -41,7 +34,6 @@ export default function DonationForm() {
     email: "",
     phone: "",
     amount: "",
-    paymentMethod: "",
     message: "",
   });
 
@@ -50,10 +42,6 @@ export default function DonationForm() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, paymentMethod: value }));
   };
 
   const validateForm = () => {
@@ -84,9 +72,9 @@ export default function DonationForm() {
         formData.address || "N/A"
       }\n*Email:* ${formData.email}\n*Phone:* ${
         formData.phone
-      }\n*Donation Amount:* ₹${formData.amount}\n*Payment Method:* ${
-        formData.paymentMethod || "Not specified"
-      }\n*Message:* ${formData.message || "N/A"}`;
+      }\n*Donation Amount:* ₹${formData.amount}\n*Message:* ${
+        formData.message || "N/A"
+      }`;
 
       // Create the WhatsApp URL with the message
       const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(
@@ -109,15 +97,23 @@ export default function DonationForm() {
         email: "",
         phone: "",
         amount: "",
-        paymentMethod: "",
         message: "",
       });
     }
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center mt-8 p-6 py-16">
-      <Card className="w-full max-w-2xl shadow-sm">
+    <div className="relative min-h-screen flex items-center justify-center px-4 py-12">
+      {/* Background Image */}
+      <Image
+        src={bg}
+        alt="Background"
+        className="fixed inset-0 w-full h-full object-cover z-[-1]"
+        priority
+      />
+
+      {/* Card Container */}
+      <Card className="w-full max-w-3xl mx-auto shadow-lg rounded-lg bg-white mt-14 mb-8">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold text-center">
             SSLF Charity Trust Donation
@@ -199,28 +195,6 @@ export default function DonationForm() {
                     onChange={handleChange}
                     required
                   />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="paymentMethod">Payment Method</Label>
-                  <Select
-                    value={formData.paymentMethod}
-                    onValueChange={handleSelectChange}
-                  >
-                    <SelectTrigger id="paymentMethod">
-                      <SelectValue placeholder="Select Payment Method" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="UPI">UPI</SelectItem>
-                      <SelectItem value="Bank Transfer">
-                        Bank Transfer
-                      </SelectItem>
-                      <SelectItem value="Credit/Debit Card">
-                        Credit/Debit Card
-                      </SelectItem>
-                      <SelectItem value="Other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </div>
               </div>
 

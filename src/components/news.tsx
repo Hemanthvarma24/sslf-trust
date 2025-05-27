@@ -49,6 +49,8 @@ import trainingfour from "@/assets/news&Events/training/IMG-20250328-WA0033.jpg"
 import trainingfive from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg";
 import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg";
 
+import newevent from "@/assets/news&Events/new.jpg"
+
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg";
 import donatetwo from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.57_05311e86.jpg";
@@ -321,6 +323,12 @@ export default function NewsEventsSection() {
       category: "DONATE PROGRAM",
       image: donatethree,
     },
+    {
+      id: 27,
+      title: "NEW",
+      category: "NEW EVENTS",
+      image: newevent,
+    },
   ];
 
   const [activeCategory, setActiveCategory] = useState<string>("SCHOLARSHIP");
@@ -494,7 +502,7 @@ export default function NewsEventsSection() {
 
       {/* Centered menu container for desktop, scrollable for mobile */}
       <motion.div
-        className="relative mb-8 flex justify-center"
+        className="relative mb-8 px-4 flex justify-center"
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -526,7 +534,7 @@ export default function NewsEventsSection() {
 
       {/* Image grid - 2 columns on mobile, 3 columns on desktop with object-contain */}
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6"
+        className="grid grid-cols-2 px-4 md:grid-cols-3 gap-3 md:gap-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

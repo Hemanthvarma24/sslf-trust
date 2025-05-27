@@ -19,84 +19,84 @@ export default function ContactUs() {
     e.preventDefault();
     const { name, email, subject, message } = formData;
 
-    // Format the message for WhatsApp
     const whatsappMessage = `Hello, I would like to contact you.\n\n*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n*Message:* ${message}`;
-    
-    // WhatsApp API link
     const whatsappURL = `https://wa.me/+919094099940?text=${encodeURIComponent(whatsappMessage)}`;
-    
-    // Open WhatsApp
     window.open(whatsappURL, "_blank");
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div className="bg-white shadow-md rounded-xl p-6 max-w-4xl w-full">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-6">Get in Touch</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Information */}
-          <div className="space-y-3 flex flex-col justify-center">
-            <div className="flex items-center space-x-3 p-3">
-              <FaPhoneAlt className="text-[#0b0a46] text-xl" />
-              <span className="text-gray-700 font-medium">9094099940</span>
+    <div className="min-h-screen bg-gradient-to-br from-[#eef2f7] to-[#dbe5f1] flex items-center justify-center p-6 mt-16">
+      <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-5xl w-full grid md:grid-cols-2 gap-10">
+        {/* Left - Contact Info */}
+        <div className="flex flex-col justify-center space-y-6">
+          <h2 className="text-4xl font-bold text-[#0b0a46]">Get in Touch</h2>
+          <p className="text-gray-600 text-lg">
+            We'd love to hear from you! Reach out to us via phone, email, or send us a message directly.
+          </p>
+
+          <div className="space-y-4 text-gray-700">
+            <div className="flex items-center gap-4">
+              <FaPhoneAlt className="text-[#0b0a46]" />
+              <span className="font-medium">+91 9094099940</span>
             </div>
-            <div className="flex items-center space-x-3 p-3">
-              <FaEnvelope className="text-[#0b0a46] text-xl" />
-              <span className="text-gray-700 font-medium">edu@sslftrust.com</span>
+            <div className="flex items-center gap-4">
+              <FaEnvelope className="text-[#0b0a46]" />
+              <span className="font-medium">edu@sslftrust.com</span>
             </div>
-            <div className="flex items-start space-x-3 p-3">
-              <FaMapMarkerAlt className="text-[#0b0a46] text-xl mt-1" />
-              <span className="text-gray-700 font-medium">No:1/210,Defence Colony, 15th Cross Street,Ekkattuthangal,
-Chennai -600032,INDIA</span>
+            <div className="flex items-start gap-4">
+              <FaMapMarkerAlt className="text-[#0b0a46] mt-1" />
+              <span className="font-medium leading-relaxed">
+                No:1/210, Defence Colony, 15th Cross Street, Ekkattuthangal, Chennai - 600032, INDIA
+              </span>
             </div>
           </div>
-          
-          {/* Contact Form */}
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
-              required
-            />
-            <input
-              type="text"
-              name="subject"
-              placeholder="Subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
-              required
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring-1 focus:ring-[#0b0a46]"
-              rows={4}
-              required
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full bg-[#0b0a46] text-white py-3 rounded-lg hover:bg-opacity-90 transition duration-300 font-medium"
-            >
-              Send Message
-            </button>
-          </form>
         </div>
+
+        {/* Right - Contact Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0b0a46] focus:outline-none"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0b0a46] focus:outline-none"
+            required
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0b0a46] focus:outline-none"
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows={5}
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#0b0a46] focus:outline-none"
+            required
+          ></textarea>
+          <button
+            type="submit"
+            className="w-full bg-[#0b0a46] text-white py-3 rounded-lg font-semibold hover:bg-[#191861] transition duration-300 shadow-md"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
     </div>
   );
