@@ -13,7 +13,7 @@ import {
   Facebook,
   Globe,
 } from "lucide-react";
-import logo from "@/assets/sslf.png";
+import logo from "@/assets/sslf logo White-01.png"
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -22,9 +22,9 @@ const fadeInUp = {
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0b0a46] text-white pt-10 pb-4">
+    <footer className="bg-[#0b0a46] text-white pt-10 pb-6 w-full">
       <motion.div
-        className="container mx-auto px-4 md:px-6"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -36,19 +36,22 @@ const Footer = () => {
           },
         }}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 items-start">
           {/* Logo and Socials */}
-          <motion.div variants={fadeInUp} className="flex flex-col gap-4">
+          <motion.div
+            variants={fadeInUp}
+            className="flex flex-col items-start gap-4"
+          >
             <Link href="/">
               <Image
                 src={logo}
                 alt="SSLF Educational Trust Logo"
-                width={150}
-                height={50}
-                className="rounded"
+                width={140}
+                height={74}
+                className=" object-cover"
               />
             </Link>
-            <div className="flex gap-4 ml-1">
+            <div className="flex gap-4 ml-4">
               <Link
                 href="https://www.instagram.com/sslfeducationaltrust?igsh=Mm9vanBmbnExbjU3"
                 target="_blank"
@@ -106,7 +109,7 @@ const Footer = () => {
           </motion.div>
 
           {/* Contact Info */}
-          <motion.div variants={fadeInUp} className="text-left">
+          <motion.div variants={fadeInUp} className="text-left break-words">
             <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
               Contact Us
             </h3>
@@ -125,7 +128,7 @@ const Footer = () => {
               </div>
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />
-                <span>
+                <span className="break-words">
                   <strong>Address:</strong> No:1/210, Defence Colony, 15th Cross
                   Street, Ekkattuthangal, Chennai - 600032, INDIA
                 </span>

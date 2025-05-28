@@ -5,11 +5,10 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import type { CarouselApi } from "@/components/ui/carousel";
+import { motion } from "framer-motion";
 import imgone from "@/assets/news&Events/scholaship/IMG-20250311-WA0108.jpg";
 import imgtwo from "@/assets/news&Events/scholaship/WhatsApp Image 2025-03-19 at 08.09.59_cab63718.jpg";
 import imgthree from "@/assets/news&Events/scholaship/WhatsApp Image 2025-03-19 at 08.10.00_e4c36ec4.jpg";
@@ -20,38 +19,43 @@ export default function ScholarshipProgramPage() {
   useEffect(() => {
     if (!api) return;
 
-    // Start autoplay
     const autoplayInterval = setInterval(() => {
       api.scrollNext();
     }, 3000);
 
-    // Clean up interval on unmount
     return () => clearInterval(autoplayInterval);
   }, [api]);
 
   return (
-    <div className="min-h-screen bg-white py-8 mt-16 md:py-12">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-100 py-12 mt-16">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800">
             Scholarship Program & Educational Support
           </h1>
-          <p className="text-lg mt-2 text-gray-600">
+          <p className="text-lg mt-3 text-gray-600">
             Empowering students with education and financial aid for a brighter
             future.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Scholarship Program Details */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Carousel for Scholarship Images */}
-          <div className="w-full">
+        <div className="grid md:grid-cols-2 gap-12 items-center bg-white rounded-2xl shadow-xl p-6 md:p-10">
+          {/* Carousel for Images */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="w-full rounded-lg overflow-hidden"
+          >
             <Carousel
               setApi={setApi}
-              opts={{
-                loop: true,
-              }}
-              className="w-full rounded-lg overflow-hidden shadow-lg"
+              opts={{ loop: true }}
+              className="w-full"
             >
               <CarouselContent>
                 {[imgone, imgtwo, imgthree].map((src, index) => (
@@ -61,18 +65,23 @@ export default function ScholarshipProgramPage() {
                         src={src || "/placeholder.svg"}
                         alt={`Scholarship Program ${index + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-xl"
                       />
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
             </Carousel>
-          </div>
+          </motion.div>
 
-          {/* Right Side Content */}
-          <div className="text-gray-800 px-4 md:px-6">
-            <p className="text-gray-600 mt-4 text-base md:text-lg">
+          {/* Content Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="text-gray-800"
+          >
+            <p className="text-base md:text-lg leading-relaxed text-gray-700">
               Education is the key to unlocking opportunities, yet financial
               constraints hold many students back. SSLF Charity Trust’s
               Scholarship Program provides financial aid, tuition fees, and
@@ -86,7 +95,7 @@ export default function ScholarshipProgramPage() {
               empowering young minds and investing in a future of knowledge and
               success.
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -145,6 +145,7 @@ export default function AboutUs() {
     },
   }
 
+
   return (
     <motion.section
       className="py-16 px-6 pt-24 lg:px-20 bg-gradient-to-br from-slate-50 to-blue-50"
@@ -381,9 +382,9 @@ export default function AboutUs() {
                     <Image
                       src={photone}
                       alt="Dr. G. Sakthivel"
-                      className="object-cover object-center rounded-xl"
+                      className="object-cover object-center"
                       fill
-                      sizes="(max-width: 768px) 100vw, 40vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       priority
                     />
                   </div>
@@ -492,7 +493,7 @@ export default function AboutUs() {
                     <Image
                       src={phototwo}
                       alt="Prof. A. Mohamed Abdul Kadhar"
-                      className="object-cover object-center rounded-xl"
+                      className="object-cover object-center"
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
                       priority

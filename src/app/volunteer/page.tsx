@@ -16,7 +16,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import bg from "@/assets/bg_1.jpg"
+import bg from "@/assets/be-a-volunteers.jpg"
 
 interface FormData {
   fullName: string;
