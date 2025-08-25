@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import awsone from "@/assets/news&Events/awarenessprogram/0ne.jpg";
 import awstwo from "@/assets/news&Events/awarenessprogram/four.jpg";
 import awsthree from "@/assets/news&Events/awarenessprogram/piccc.jpg";
-import awsfour from "@/assets/news&Events/awarenessprogram/IMG-20250328-WA0033.jpg";
+import awsfour from "@/assets/news&Events/awarenessprogram/five.jpg";
 
 export default function AwarenessProgramsPage() {
   const [api, setApi] = useState<CarouselApi>();

@@ -30,10 +30,18 @@ import img22 from "@/assets/photogalary/all images/IMG-20250311-WA0110.jpg";
 import img23 from "@/assets/photogalary/all images/IMG-20250311-WA0111.jpg";
 import img24 from "@/assets/photogalary/all images/IMG-20250311-WA0113.jpg";
 import img25 from "@/assets/photogalary/all images/IMG-20250311-WA0114.jpg";
+import img26 from "@/assets/news&Events/new.jpg"
+import img27 from "@/assets/news&Events/new2.jpg"
+import img28 from "@/assets/news&Events/new-3.jpg"
+import img29 from "@/assets/news&Events/new-4.jpg"
+import img30 from "@/assets/news&Events/new-5.jpg"
+import img31 from "@/assets/news&Events/new-6.jpg"
+import img32 from "@/assets/news&Events/new-7.jpg"
 
-// Create image objects with varied aspect ratios for masonry effect
-// Add alt text and fix type to match Next.js image imports
 const allImages = [
+  { src: img26, aspectRatio: 0.88, alt: "Image 26" },
+  {src:img27,aspectRatio:0.88,alt:"Image 27"},
+  {src:img28,aspectRatio:1.05,alt:"Image 28"},
   { src: img6, aspectRatio: 0.75, alt: "Image 6" },
   { src: img20, aspectRatio: 1.2, alt: "Image 20" },
   { src: img24, aspectRatio: 0.8, alt: "Image 24" },
@@ -59,6 +67,10 @@ const allImages = [
   { src: img18, aspectRatio: 1.22, alt: "Image 18" },
   { src: img5, aspectRatio: 0.84, alt: "Image 5" },
   { src: img14, aspectRatio: 0.98, alt: "Image 14" },
+  {src:img29 , aspectRatio:0.98,alt:"Image 29"},
+  {src:img30,aspectRatio:0.98,alt:"Image 30"},
+  {src:img31,aspectRatio:0.88,alt:"Image 31"},
+  {src:img32,aspectRatio:0.98,alt:"Image 32"},
 ];
 
 interface MasonryItem {
@@ -281,7 +293,7 @@ export default function Gallery() {
           {!isAllImagesLoaded && (
             <div className="text-center mt-8">
               <button
-                className="px-6 py-3 bg-[#1e2838] text-white rounded-lg hover:bg-blue-700 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
+                className="px-6 py-3 bg-[#0b0a45] text-white rounded-lg hover:bg-[#0b0a45]/80 transition-all duration-300 font-medium shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95"
                 onClick={() =>
                   setItemsToShow((prev) => Math.min(prev + 5, allImages.length))
                 }

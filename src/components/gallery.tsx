@@ -29,11 +29,18 @@ import img22 from "@/assets/photogalary/all images/IMG-20250311-WA0110.jpg";
 import img23 from "@/assets/photogalary/all images/IMG-20250311-WA0111.jpg";
 import img24 from "@/assets/photogalary/all images/IMG-20250311-WA0113.jpg";
 import img25 from "@/assets/photogalary/all images/IMG-20250311-WA0114.jpg";
+import img26 from "@/assets/news&Events/new.jpg"
+import img27 from "@/assets/news&Events/new2.jpg"
+import img28 from "@/assets/news&Events/new-3.jpg"
+import img29 from "@/assets/news&Events/new-4.jpg"
+import img30 from "@/assets/news&Events/new-5.jpg"
+import img31 from "@/assets/news&Events/new-6.jpg"
+import img32 from "@/assets/news&Events/new-7.jpg"
 
 const allImages = [
-  img6, img20, img24, img25, img3, img10, img11, img17, img15, img1,
+  img26 , img27, img28 , img29, img30, img6, img20, img24, img25, img3, img10, img11, img17, img15, img1,
   img21, img22, img2, img7, img8, img9, img19, img4, img12, img23,
-  img13, img16, img18, img5, img14,
+  img13, img16, img18, img5, img14, img31,img32
 ];
 
 export default function GallerySection() {

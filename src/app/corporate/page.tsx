@@ -11,7 +11,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import Image from "next/image";
-import bg from "@/assets/Corporate Partnership.jpg"
+import bg from "@/assets/corporatepartnership.jpg"
 
 type ContributionType =
   | "Financial Donation"

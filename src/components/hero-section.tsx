@@ -6,13 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import img1 from "@/assets/homepage/img1.jpg";
-import img2 from "@/assets/homepage/img2.jpg";
 import img7 from "@/assets/homepage/WhatsAppImage 2025-03-19.jpg";
-import img3 from "@/assets/homepage/img3.jpg";
-import img6 from "@/assets/homepage/img6.jpg";
-import img8 from "@/assets/news&Events/new.jpg"
+import img8 from "@/assets/news&Events/new.jpg";
 
-const images = [img1, img2, img7, img3,  img6, img8,];
+const images = [img1, img7,  img8];
 
 export default function HeroSection() {
   const settings = {
@@ -33,7 +30,10 @@ export default function HeroSection() {
     <section className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[90vh] overflow-hidden">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index} className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[90vh]">
+          <div
+            key={index}
+            className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[90vh]"
+          >
             <Image
               src={image}
               alt={`Hero Slide ${index + 1}`}

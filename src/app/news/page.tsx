@@ -49,6 +49,13 @@ import trainingfive from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg"
 import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg"
 
 import newevent from "@/assets/news&Events/new.jpg"
+import new2 from "@/assets/news&Events/new2.jpg"
+import new3 from "@/assets/news&Events/new-3.jpg"
+import new4 from "@/assets/news&Events/new-4.jpg"
+import new5 from "@/assets/news&Events/new-5.jpg"
+import new6 from "@/assets/news&Events/new-6.jpg"
+import new7 from "@/assets/news&Events/new-7.jpg"
+
 
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg"
@@ -78,255 +85,300 @@ export default function EnhancedNewsGallery() {
     "DONATE PROGRAM",
   ]
 
-  const newsItems: NewsItem[] = [
-    // Scholarship items
-    {
-      id: 1,
-      title: "Annual Scholarship Program",
-      category: "SCHOLARSHIP",
-      image: imgone,
-    },
-    {
-      id: 2,
-      title: "Merit Scholarship Awards",
-      category: "SCHOLARSHIP",
-      image: imgtwo,
-    },
-    {
-      id: 3,
-      title: "Scholarship Distribution Ceremony",
-      category: "SCHOLARSHIP",
-      image: imgthree,
-    },
-    {
-      id: 4,
-      title: "Education Support Initiative",
-      category: "SCHOLARSHIP",
-      image: imgfour,
-    },
-    {
-      id: 5,
-      title: "Scholarship Alumni Meet",
-      category: "SCHOLARSHIP",
-      image: imgfive,
-    },
-    {
-      id: 6,
-      title: "Scholarship Program Overview",
-      category: "SCHOLARSHIP",
-      image: imgsix,
-    },
+const newsItems: NewsItem[] = [
+  // Scholarship items
+  {
+    id: 1,
+    title: "Annual Scholarship Program",
+    category: "SCHOLARSHIP",
+    image: imgone,
+  },
+  {
+    id: 2,
+    title: "Merit Scholarship Awards",
+    category: "SCHOLARSHIP",
+    image: imgtwo,
+  },
+  {
+    id: 3,
+    title: "Scholarship Distribution Ceremony",
+    category: "SCHOLARSHIP",
+    image: imgthree,
+  },
+  {
+    id: 4,
+    title: "Education Support Initiative",
+    category: "SCHOLARSHIP",
+    image: imgfour,
+  },
+  {
+    id: 5,
+    title: "Scholarship Alumni Meet",
+    category: "SCHOLARSHIP",
+    image: imgfive,
+  },
+  {
+    id: 6,
+    title: "Scholarship Program Overview",
+    category: "SCHOLARSHIP",
+    image: imgsix,
+  },
 
-    // Medical Camp items
-    {
-      id: 7,
-      title: "Free Health Check-up Camp",
-      category: "MEDICAL CAMP",
-      image: medicalone,
-    },
-    {
-      id: 8,
-      title: "Dental Check-up Drive",
-      category: "MEDICAL CAMP",
-      image: medicaltwo,
-    },
-    {
-      id: 9,
-      title: "Eye Care Awareness Camp",
-      category: "MEDICAL CAMP",
-      image: medicalthree,
-    },
-    {
-      id: 10,
-      title: "Rural Health Initiative",
-      category: "MEDICAL CAMP",
-      image: medicalfour,
-    },
-    {
-      id: 11,
-      title: "Women's Health Check-up",
-      category: "MEDICAL CAMP",
-      image: medicalfive,
-    },
-    {
-      id: 12,
-      title: "Community Medical Outreach",
-      category: "MEDICAL CAMP",
-      image: medicalsix,
-    },
+  // Medical Camp items
+  {
+    id: 7,
+    title: "Free Health Check-up Camp",
+    category: "MEDICAL CAMP",
+    image: medicalone,
+  },
+  {
+    id: 8,
+    title: "Dental Check-up Drive",
+    category: "MEDICAL CAMP",
+    image: medicaltwo,
+  },
+  {
+    id: 9,
+    title: "Eye Care Awareness Camp",
+    category: "MEDICAL CAMP",
+    image: medicalthree,
+  },
+  {
+    id: 10,
+    title: "Rural Health Initiative",
+    category: "MEDICAL CAMP",
+    image: medicalfour,
+  },
+  {
+    id: 11,
+    title: "Women's Health Check-up",
+    category: "MEDICAL CAMP",
+    image: medicalfive,
+  },
+  {
+    id: 12,
+    title: "Community Medical Outreach",
+    category: "MEDICAL CAMP",
+    image: medicalsix,
+  },
 
-    // Awareness Program items - first set
-    {
-      id: 13,
-      title: "Community Awareness Session",
-      category: "AWARENESS PROGRAM",
-      image: awsone,
-    },
-    {
-      id: 14,
-      title: "Environmental Awareness Drive",
-      category: "AWARENESS PROGRAM",
-      image: awstwo,
-    },
-    {
-      id: 15,
-      title: "Health Education Program",
-      category: "AWARENESS PROGRAM",
-      image: awsthree,
-    },
-    {
-      id: 16,
-      title: "Youth Awareness Workshop",
-      category: "AWARENESS PROGRAM",
-      image: awsfour,
-    },
-    {
-      id: 17,
-      title: "Environmental Protection Drive",
-      category: "AWARENESS PROGRAM",
-      image: aws,
-    },
-    {
-      id: 18,
-      title: "Social Awareness Campaign",
-      category: "AWARENESS PROGRAM",
-      image: awssix,
-    },
+  // Awareness Program items - first set
+  {
+    id: 13,
+    title: "Community Awareness Session",
+    category: "AWARENESS PROGRAM",
+    image: awsone,
+  },
+  {
+    id: 14,
+    title: "Environmental Awareness Drive",
+    category: "AWARENESS PROGRAM",
+    image: awstwo,
+  },
+  {
+    id: 15,
+    title: "Health Education Program",
+    category: "AWARENESS PROGRAM",
+    image: awsthree,
+  },
+  {
+    id: 16,
+    title: "Youth Awareness Workshop",
+    category: "AWARENESS PROGRAM",
+    image: awsfour,
+  },
+  {
+    id: 17,
+    title: "Environmental Protection Drive",
+    category: "AWARENESS PROGRAM",
+    image: aws,
+  },
+  {
+    id: 18,
+    title: "Social Awareness Campaign",
+    category: "AWARENESS PROGRAM",
+    image: awssix,
+  },
 
-    // Awareness Program items - second set
-    {
-      id: 27,
-      title: "Community Outreach Program",
-      category: "AWARENESS PROGRAM",
-      image: awsseven,
-    },
-    {
-      id: 28,
-      title: "School Health Education",
-      category: "AWARENESS PROGRAM",
-      image: awseight,
-    },
-    {
-      id: 29,
-      title: "Rural Awareness Initiative",
-      category: "AWARENESS PROGRAM",
-      image: awsnine,
-    },
-    {
-      id: 30,
-      title: "Public Safety Workshop",
-      category: "AWARENESS PROGRAM",
-      image: awsten,
-    },
-    {
-      id: 31,
-      title: "Community Health Seminar",
-      category: "AWARENESS PROGRAM",
-      image: awseleven,
-    },
-    {
-      id: 32,
-      title: "Awareness",
-      category: "AWARENESS PROGRAM",
-      image: awsfive,
-    },
+  // Awareness Program items - second set
+  {
+    id: 27,
+    title: "Community Outreach Program",
+    category: "AWARENESS PROGRAM",
+    image: awsseven,
+  },
+  {
+    id: 28,
+    title: "School Health Education",
+    category: "AWARENESS PROGRAM",
+    image: awseight,
+  },
+  {
+    id: 29,
+    title: "Rural Awareness Initiative",
+    category: "AWARENESS PROGRAM",
+    image: awsnine,
+  },
+  {
+    id: 30,
+    title: "Public Safety Workshop",
+    category: "AWARENESS PROGRAM",
+    image: awsten,
+  },
+  {
+    id: 31,
+    title: "Community Health Seminar",
+    category: "AWARENESS PROGRAM",
+    image: awseleven,
+  },
+  {
+    id: 32,
+    title: "Awareness",
+    category: "AWARENESS PROGRAM",
+    image: awsfive,
+  },
 
-    // Vocational Training items
-    {
-      id: 19,
-      title: "Skill Development Workshop",
-      category: "VOCATIONAL TRAINING",
-      image: vtcone,
-    },
-    {
-      id: 20,
-      title: "Computer Training Program",
-      category: "VOCATIONAL TRAINING",
-      image: vtctwo,
-    },
-    {
-      id: 21,
-      title: "Teacher Training",
-      category: "VOCATIONAL TRAINING",
-      image: vtcthree,
-    },
-    // {
-    //   id: 22,
-    //   title: "Youth Employment Training",
-    //   category: "VOCATIONAL TRAINING",
-    //   image: vtcfour,
-    // },
-    {
-      id: 23,
-      title: "Women Empowerment Workshop",
-      category: "VOCATIONAL TRAINING",
-      image: vtcfive,
-    },
+  // Vocational Training items
+  {
+    id: 19,
+    title: "Skill Development Workshop",
+    category: "VOCATIONAL TRAINING",
+    image: vtcone,
+  },
+  {
+    id: 20,
+    title: "Computer Training Program",
+    category: "VOCATIONAL TRAINING",
+    image: vtctwo,
+  },
+  {
+    id: 21,
+    title: "Teacher Training",
+    category: "VOCATIONAL TRAINING",
+    image: vtcthree,
+  },
+  {
+    id: 23,
+    title: "Women Empowerment Workshop",
+    category: "VOCATIONAL TRAINING",
+    image: vtcfive,
+  },
+   {
+    id: 24,
+    title: "Achievers Day",
+    category: "VOCATIONAL TRAINING",
+    image: new3,
+  },
+   {
+    id: 25,
+    title: "Learning Centre",
+    category: "VOCATIONAL TRAINING",
+    image: new4,
+  },
+  
 
-    // Training Program items - Fixed category name to match the menu
-    {
-      id: 33,
-      title: "Leadership Development Program",
-      category: "TRAINING PROGRAM",
-      image: trainingone,
-    },
-    {
-      id: 34,
-      title: "Professional Skills Workshop",
-      category: "TRAINING PROGRAM",
-      image: trainingtwo,
-    },
-    {
-      id: 35,
-      title: "Community Leadership Training",
-      category: "TRAINING PROGRAM",
-      image: trainingthree,
-    },
-    {
-      id: 36,
-      title: "Specialized Skills Development",
-      category: "TRAINING PROGRAM",
-      image: trainingfour,
-    },
-    {
-      id: 37,
-      title: "Train the Trainer Program",
-      category: "TRAINING PROGRAM",
-      image: trainingfive,
-    },
-    {
-      id: 38,
-      title: "Career Development Workshop",
-      category: "TRAINING PROGRAM",
-      image: trainingsix,
-    },
+  // Training Program items
+  {
+    id: 33,
+    title: "Leadership Development Program",
+    category: "TRAINING PROGRAM",
+    image: trainingone,
+  },
+  {
+    id: 34,
+    title: "Professional Skills Workshop",
+    category: "TRAINING PROGRAM",
+    image: trainingtwo,
+  },
+  {
+    id: 35,
+    title: "Community Leadership Training",
+    category: "TRAINING PROGRAM",
+    image: trainingthree,
+  },
+  {
+    id: 36,
+    title: "Specialized Skills Development",
+    category: "TRAINING PROGRAM",
+    image: trainingfour,
+  },
+  {
+    id: 37,
+    title: "Train the Trainer Program",
+    category: "TRAINING PROGRAM",
+    image: trainingfive,
+  },
+  {
+    id: 38,
+    title: "Career Development Workshop",
+    category: "TRAINING PROGRAM",
+    image: trainingsix,
+  },
 
-    // Donate Program items
-    {
-      id: 24,
-      title: "Food Distribution Drive",
-      category: "DONATE PROGRAM",
-      image: donate,
-    },
-    {
-      id: 25,
-      title: "Clothing Donation Campaign",
-      category: "DONATE PROGRAM",
-      image: donatetwo,
-    },
-    {
-      id: 26,
-      title: "Educational Materials Donation",
-      category: "DONATE PROGRAM",
-      image: donatethree,
-    },
-    {
-      id: 39, // Fixed duplicate ID (was 27)
-      title: "NEW",
-      category: "NEW EVENTS",
-      image: newevent,
-    },
-  ]
+  // NEW EVENTS - Updated with all imported images
+  {
+    id: 39,
+    title: "Latest Community Initiative",
+    category: "NEW EVENTS",
+    image: newevent,
+  },
+  {
+    id: 40,
+    title: "Recent Outreach Program",
+    category: "NEW EVENTS",
+    image: new2,
+  },
+  {
+    id: 41,
+    title: "New Educational Workshop",
+    category: "NEW EVENTS",
+    image: new3,
+  },
+  {
+    id: 42,
+    title: "Fresh Community Project",
+    category: "NEW EVENTS",
+    image: new4,
+  },
+  {
+    id: 43,
+    title: "Updated Training Session",
+    category: "NEW EVENTS",
+    image: new5,
+  },
+  {
+    id: 44,
+    title: "Modern Awareness Campaign",
+    category: "NEW EVENTS",
+    image: new6,
+  },
+  {
+    id: 45,
+    title: "Current Development Program",
+    category: "NEW EVENTS",
+    image: new7,
+  },
+
+  // Donate Program items
+  {
+    id: 24,
+    title: "Food Distribution Drive",
+    category: "DONATE PROGRAM",
+    image: donate,
+  },
+  {
+    id: 25,
+    title: "Clothing Donation Campaign",
+    category: "DONATE PROGRAM",
+    image: donatetwo,
+  },
+  {
+    id: 26,
+    title: "Educational Materials Donation",
+    category: "DONATE PROGRAM",
+    image: donatethree,
+  },
+];
 
   const [activeCategory, setActiveCategory] = useState<string>("SCHOLARSHIP")
   const [currentPage, setCurrentPage] = useState<number>(1)
@@ -490,14 +542,14 @@ export default function EnhancedNewsGallery() {
     inactive: {
       scale: 1,
       backgroundColor: "#f3f4f6",
-      color: "#374151",
+      color: "black",
       boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
     },
     active: {
       scale: 1.05,
       backgroundColor: "#1e3a8a",
       color: "#ffffff",
-      boxShadow: "0 4px 15px rgba(30, 58, 138, 0.3)",
+     
     },
     hover: {
       scale: 1.08,
@@ -507,123 +559,63 @@ export default function EnhancedNewsGallery() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-60 h-60 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-20"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-      </div>
+    <div className="min-h-screen">
+    
 
       <motion.section
         ref={sectionRef}
-        className="relative py-10 md:py-16 mt-12"
+        className="relative pt-20 mb-12"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
         {/* Header */}
-        <motion.div className="text-center mb-12 mt-6" variants={itemVariants}>
+        <motion.div className="text-center mb-6 mt-4" variants={itemVariants}>
           <motion.div
             className="inline-block"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="text-2xl md:text-3xl font-bold bg-[#0b0a45] bg-clip-text text-transparent">
               NEWS & EVENTS
             </h2>
-            <motion.div
-              className="h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-4"
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1, delay: 0.5 }}
-            />
+        
           </motion.div>
         </motion.div>
 
         {/* Category Menu */}
-        <motion.div className="relative mb-12 px-4 flex justify-center" variants={itemVariants}>
-          <div
-            ref={menuRef}
-            className="flex md:max-w-fit mx-auto overflow-x-auto scrollbar-hide gap-3 py-2 px-1 scroll-smooth snap-x"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                data-category={category}
-                className="px-6 py-3 text-xs md:text-sm font-semibold border-2 border-transparent rounded-xl transition-all whitespace-nowrap flex-shrink-0 snap-start backdrop-blur-sm"
-                onClick={() => handleCategoryChange(category)}
-                variants={categoryButtonVariants}
-                initial="inactive"
-                animate={activeCategory === category ? "active" : "inactive"}
-                whileHover="hover"
-                whileTap={{ scale: 0.95 }}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
+        <motion.div
+  className="relative mb-8 px-4 flex justify-center"
+  variants={itemVariants}
+>
+  <div
+    ref={menuRef}
+    className="flex md:max-w-fit mx-auto overflow-x-auto scrollbar-hide gap-3 py-2 px-1 scroll-smooth snap-x"
+    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+  >
+    {categories.map((category) => (
+      <motion.button
+        key={category}
+        data-category={category}
+        className={`px-6 py-3 text-xs md:text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300`}
+        onClick={() => handleCategoryChange(category)}
+        variants={categoryButtonVariants}
+        initial="inactive"
+        animate={activeCategory === category ? "active" : "inactive"}
+        whileHover="hover"
+        whileTap={{ scale: 0.95 }}
+      >
+        {category}
+      </motion.button>
+    ))}
+  </div>
+</motion.div>
 
-        {/* Loading Overlay */}
-        <AnimatePresence>
-          {isLoading && (
-            <motion.div
-              className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 1,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
-                }}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+
 
         {/* Image Grid */}
         <motion.div
-          className="grid grid-cols-2 px-4 md:grid-cols-3 gap-4 md:gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-2 px-4 md:grid-cols-3 gap-4 md:gap-6 max-w-7xl mx-auto"
           variants={containerVariants}
           key={activeCategory}
         >
@@ -660,14 +652,14 @@ export default function EnhancedNewsGallery() {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <motion.div className="flex justify-center items-center mt-12 gap-3" variants={itemVariants}>
+          <motion.div className="flex justify-center items-center mt-8 gap-3" variants={itemVariants}>
             <motion.button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className={`px-4 py-2 rounded-xl font-medium transition-all ${
                 currentPage === 1
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl"
+                  : "bg-[#0b0a45] text-white hover:bg-blue-700 shadow-lg hover:shadow-xl"
               }`}
               whileHover={currentPage !== 1 ? { scale: 1.05 } : {}}
               whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
@@ -682,7 +674,7 @@ export default function EnhancedNewsGallery() {
                   onClick={() => setCurrentPage(i + 1)}
                   className={`w-10 h-10 flex items-center justify-center rounded-xl font-medium transition-all ${
                     currentPage === i + 1
-                      ? "bg-blue-600 text-white shadow-lg"
+                      ? "bg-[#0b0a45] text-white shadow-lg"
                       : "bg-white/80 text-gray-700 hover:bg-blue-100 border border-gray-200"
                   }`}
                   whileHover={{ scale: 1.1 }}
@@ -699,7 +691,7 @@ export default function EnhancedNewsGallery() {
               className={`px-4 py-2 rounded-xl font-medium transition-all ${
                 currentPage === totalPages
                   ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl"
+                  : "bg-[#0b0a45] text-white hover:bg-blue-700 shadow-lg hover:shadow-xl"
               }`}
               whileHover={currentPage !== totalPages ? { scale: 1.05 } : {}}
               whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
@@ -760,7 +752,8 @@ export default function EnhancedNewsGallery() {
                 </motion.button>
               </div>
 
-              <div className="flex-1 overflow-auto p-6 flex items-center justify-center">
+              <div className="flex-1 overflow-auto p-6 flex items-center justify-center"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                 <motion.div
                   className="relative h-[70vh] w-full"
                   initial={{ opacity: 0, scale: 0.9 }}

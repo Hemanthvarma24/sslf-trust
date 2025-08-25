@@ -50,6 +50,12 @@ import trainingfive from "@/assets/news&Events/training/IMG-20250328-WA0035.jpg"
 import trainingsix from "@/assets/news&Events/training/IMG-20250328-WA0034.jpg";
 
 import newevent from "@/assets/news&Events/new.jpg"
+import new2 from "@/assets/news&Events/new2.jpg"
+import new3 from "@/assets/news&Events/new-3.jpg"
+import new4 from "@/assets/news&Events/new-4.jpg"
+import new5 from "@/assets/news&Events/new-5.jpg"
+import new6 from "@/assets/news&Events/new-6.jpg"
+import new7 from "@/assets/news&Events/new-7.jpg"
 
 // Donate program images
 import donate from "@/assets/news&Events/donate/WhatsApp Image 2025-03-11 at 17.16.56_0ef56408.jpg";
@@ -82,254 +88,299 @@ export default function NewsEventsSection() {
 
   // Create a comprehensive newsItems array that includes all imported images
   const newsItems: NewsItem[] = [
-    // Scholarship items
-    {
-      id: 1,
-      title: "Annual Scholarship Program",
-      category: "SCHOLARSHIP",
-      image: imgone,
-    },
-    {
-      id: 2,
-      title: "Merit Scholarship Awards",
-      category: "SCHOLARSHIP",
-      image: imgtwo,
-    },
-    {
-      id: 3,
-      title: "Scholarship Distribution Ceremony",
-      category: "SCHOLARSHIP",
-      image: imgthree,
-    },
-    {
-      id: 4,
-      title: "Education Support Initiative",
-      category: "SCHOLARSHIP",
-      image: imgfour,
-    },
-    {
-      id: 5,
-      title: "Scholarship Alumni Meet",
-      category: "SCHOLARSHIP",
-      image: imgfive,
-    },
-    {
-      id: 6,
-      title: "Scholarship Program Overview",
-      category: "SCHOLARSHIP",
-      image: imgsix,
-    },
+  // Scholarship items
+  {
+    id: 1,
+    title: "Annual Scholarship Program",
+    category: "SCHOLARSHIP",
+    image: imgone,
+  },
+  {
+    id: 2,
+    title: "Merit Scholarship Awards",
+    category: "SCHOLARSHIP",
+    image: imgtwo,
+  },
+  {
+    id: 3,
+    title: "Scholarship Distribution Ceremony",
+    category: "SCHOLARSHIP",
+    image: imgthree,
+  },
+  {
+    id: 4,
+    title: "Education Support Initiative",
+    category: "SCHOLARSHIP",
+    image: imgfour,
+  },
+  {
+    id: 5,
+    title: "Scholarship Alumni Meet",
+    category: "SCHOLARSHIP",
+    image: imgfive,
+  },
+  {
+    id: 6,
+    title: "Scholarship Program Overview",
+    category: "SCHOLARSHIP",
+    image: imgsix,
+  },
 
-    // Medical Camp items
-    {
-      id: 7,
-      title: "Free Health Check-up Camp",
-      category: "MEDICAL CAMP",
-      image: medicalone,
-    },
-    {
-      id: 8,
-      title: "Dental Check-up Drive",
-      category: "MEDICAL CAMP",
-      image: medicaltwo,
-    },
-    {
-      id: 9,
-      title: "Eye Care Awareness Camp",
-      category: "MEDICAL CAMP",
-      image: medicalthree,
-    },
-    {
-      id: 10,
-      title: "Rural Health Initiative",
-      category: "MEDICAL CAMP",
-      image: medicalfour,
-    },
-    {
-      id: 11,
-      title: "Women's Health Check-up",
-      category: "MEDICAL CAMP",
-      image: medicalfive,
-    },
-    {
-      id: 12,
-      title: "Community Medical Outreach",
-      category: "MEDICAL CAMP",
-      image: medicalsix,
-    },
+  // Medical Camp items
+  {
+    id: 7,
+    title: "Free Health Check-up Camp",
+    category: "MEDICAL CAMP",
+    image: medicalone,
+  },
+  {
+    id: 8,
+    title: "Dental Check-up Drive",
+    category: "MEDICAL CAMP",
+    image: medicaltwo,
+  },
+  {
+    id: 9,
+    title: "Eye Care Awareness Camp",
+    category: "MEDICAL CAMP",
+    image: medicalthree,
+  },
+  {
+    id: 10,
+    title: "Rural Health Initiative",
+    category: "MEDICAL CAMP",
+    image: medicalfour,
+  },
+  {
+    id: 11,
+    title: "Women's Health Check-up",
+    category: "MEDICAL CAMP",
+    image: medicalfive,
+  },
+  {
+    id: 12,
+    title: "Community Medical Outreach",
+    category: "MEDICAL CAMP",
+    image: medicalsix,
+  },
 
-    // Awareness Program items - first set
-    {
-      id: 13,
-      title: "Community Awareness Session",
-      category: "AWARENESS PROGRAM",
-      image: awsone,
-    },
-    {
-      id: 14,
-      title: "Environmental Awareness Drive",
-      category: "AWARENESS PROGRAM",
-      image: awstwo,
-    },
-    {
-      id: 15,
-      title: "Health Education Program",
-      category: "AWARENESS PROGRAM",
-      image: awsthree,
-    },
-    {
-      id: 16,
-      title: "Youth Awareness Workshop",
-      category: "AWARENESS PROGRAM",
-      image: awsfour,
-    },
-    {
-      id: 17,
-      title: "Environmental Protection Drive",
-      category: "AWARENESS PROGRAM",
-      image: aws,
-    },
-    {
-      id: 18,
-      title: "Social Awareness Campaign",
-      category: "AWARENESS PROGRAM",
-      image: awssix,
-    },
+  // Awareness Program items - first set
+  {
+    id: 13,
+    title: "Community Awareness Session",
+    category: "AWARENESS PROGRAM",
+    image: awsone,
+  },
+  {
+    id: 14,
+    title: "Environmental Awareness Drive",
+    category: "AWARENESS PROGRAM",
+    image: awstwo,
+  },
+  {
+    id: 15,
+    title: "Health Education Program",
+    category: "AWARENESS PROGRAM",
+    image: awsthree,
+  },
+  {
+    id: 16,
+    title: "Youth Awareness Workshop",
+    category: "AWARENESS PROGRAM",
+    image: awsfour,
+  },
+  {
+    id: 17,
+    title: "Environmental Protection Drive",
+    category: "AWARENESS PROGRAM",
+    image: aws,
+  },
+  {
+    id: 18,
+    title: "Social Awareness Campaign",
+    category: "AWARENESS PROGRAM",
+    image: awssix,
+  },
 
-    // Awareness Program items - second set
-    {
-      id: 27,
-      title: "Community Outreach Program",
-      category: "AWARENESS PROGRAM",
-      image: awsseven,
-    },
-    {
-      id: 28,
-      title: "School Health Education",
-      category: "AWARENESS PROGRAM",
-      image: awseight,
-    },
-    {
-      id: 29,
-      title: "Rural Awareness Initiative",
-      category: "AWARENESS PROGRAM",
-      image: awsnine,
-    },
-    {
-      id: 30,
-      title: "Public Safety Workshop",
-      category: "AWARENESS PROGRAM",
-      image: awsten,
-    },
-    {
-      id: 31,
-      title: "Community Health Seminar",
-      category: "AWARENESS PROGRAM",
-      image: awseleven,
-    },
-    {
-      id: 32,
-      title: "Awareness",
-      category: "AWARENESS PROGRAM",
-      image: awsfive,
-    },
+  // Awareness Program items - second set
+  {
+    id: 27,
+    title: "Community Outreach Program",
+    category: "AWARENESS PROGRAM",
+    image: awsseven,
+  },
+  {
+    id: 28,
+    title: "School Health Education",
+    category: "AWARENESS PROGRAM",
+    image: awseight,
+  },
+  {
+    id: 29,
+    title: "Rural Awareness Initiative",
+    category: "AWARENESS PROGRAM",
+    image: awsnine,
+  },
+  {
+    id: 30,
+    title: "Public Safety Workshop",
+    category: "AWARENESS PROGRAM",
+    image: awsten,
+  },
+  {
+    id: 31,
+    title: "Community Health Seminar",
+    category: "AWARENESS PROGRAM",
+    image: awseleven,
+  },
+  {
+    id: 32,
+    title: "Awareness",
+    category: "AWARENESS PROGRAM",
+    image: awsfive,
+  },
 
-    // Vocational Training items
-    {
-      id: 19,
-      title: "Skill Development Workshop",
-      category: "VOCATIONAL TRAINING",
-      image: vtcone,
-    },
-    {
-      id: 20,
-      title: "Computer Training Program",
-      category: "VOCATIONAL TRAINING",
-      image: vtctwo,
-    },
-    {
-      id: 21,
-      title: "Teacher Training",
-      category: "VOCATIONAL TRAINING",
-      image: vtcthree,
-    },
-    // {
-    //   id: 22,
-    //   title: "Youth Employment Training",
-    //   category: "VOCATIONAL TRAINING",
-    //   image: vtcfour,
-    // },
-    {
-      id: 23,
-      title: "Women Empowerment Workshop",
-      category: "VOCATIONAL TRAINING",
-      image: vtcfive,
-    },
+  // Vocational Training items
+  {
+    id: 19,
+    title: "Skill Development Workshop",
+    category: "VOCATIONAL TRAINING",
+    image: vtcone,
+  },
+  {
+    id: 20,
+    title: "Computer Training Program",
+    category: "VOCATIONAL TRAINING",
+    image: vtctwo,
+  },
+  {
+    id: 21,
+    title: "Teacher Training",
+    category: "VOCATIONAL TRAINING",
+    image: vtcthree,
+  },
+  {
+    id: 23,
+    title: "Women Empowerment Workshop",
+    category: "VOCATIONAL TRAINING",
+    image: vtcfive,
+  },
+  {
+    id: 24,
+    title: "Achievers Day",
+    category: "VOCATIONAL TRAINING",
+    image: new3,
+  },
+   {
+    id: 25,
+    title: "Learning Centre",
+    category: "VOCATIONAL TRAINING",
+    image: new4,
+  },
+  
 
-    // Training Program items - Fixed category name to match the menu
-    {
-      id: 33,
-      title: "Leadership Development Program",
-      category: "TRAINING PROGRAM",
-      image: trainingone,
-    },
-    {
-      id: 34,
-      title: "Professional Skills Workshop",
-      category: "TRAINING PROGRAM",
-      image: trainingtwo,
-    },
-    {
-      id: 35,
-      title: "Community Leadership Training",
-      category: "TRAINING PROGRAM",
-      image: trainingthree,
-    },
-    {
-      id: 36,
-      title: "Specialized Skills Development",
-      category: "TRAINING PROGRAM",
-      image: trainingfour,
-    },
-    {
-      id: 37,
-      title: "Train the Trainer Program",
-      category: "TRAINING PROGRAM",
-      image: trainingfive,
-    },
-    {
-      id: 38,
-      title: "Career Development Workshop",
-      category: "TRAINING PROGRAM",
-      image: trainingsix,
-    },
+  // Training Program items
+  {
+    id: 33,
+    title: "Leadership Development Program",
+    category: "TRAINING PROGRAM",
+    image: trainingone,
+  },
+  {
+    id: 34,
+    title: "Professional Skills Workshop",
+    category: "TRAINING PROGRAM",
+    image: trainingtwo,
+  },
+  {
+    id: 35,
+    title: "Community Leadership Training",
+    category: "TRAINING PROGRAM",
+    image: trainingthree,
+  },
+  {
+    id: 36,
+    title: "Specialized Skills Development",
+    category: "TRAINING PROGRAM",
+    image: trainingfour,
+  },
+  {
+    id: 37,
+    title: "Train the Trainer Program",
+    category: "TRAINING PROGRAM",
+    image: trainingfive,
+  },
+  {
+    id: 38,
+    title: "Career Development Workshop",
+    category: "TRAINING PROGRAM",
+    image: trainingsix,
+  },
 
-    // Donate Program items
-    {
-      id: 24,
-      title: "Food Distribution Drive",
-      category: "DONATE PROGRAM",
-      image: donate,
-    },
-    {
-      id: 25,
-      title: "Clothing Donation Campaign",
-      category: "DONATE PROGRAM",
-      image: donatetwo,
-    },
-    {
-      id: 26,
-      title: "Educational Materials Donation",
-      category: "DONATE PROGRAM",
-      image: donatethree,
-    },
-    {
-      id: 27,
-      title: "NEW",
-      category: "NEW EVENTS",
-      image: newevent,
-    },
-  ];
+  // NEW EVENTS - Updated with all imported images
+  {
+    id: 39,
+    title: "Latest Community Initiative",
+    category: "NEW EVENTS",
+    image: newevent,
+  },
+  {
+    id: 40,
+    title: "Recent Outreach Program",
+    category: "NEW EVENTS",
+    image: new2,
+  },
+  {
+    id: 41,
+    title: "New Educational Workshop",
+    category: "NEW EVENTS",
+    image: new3,
+  },
+  {
+    id: 42,
+    title: "Fresh Community Project",
+    category: "NEW EVENTS",
+    image: new4,
+  },
+  {
+    id: 43,
+    title: "Updated Training Session",
+    category: "NEW EVENTS",
+    image: new5,
+  },
+  {
+    id: 44,
+    title: "Modern Awareness Campaign",
+    category: "NEW EVENTS",
+    image: new6,
+  },
+  {
+    id: 45,
+    title: "Current Development Program",
+    category: "NEW EVENTS",
+    image: new7,
+  },
+
+  // Donate Program items
+  {
+    id: 24,
+    title: "Food Distribution Drive",
+    category: "DONATE PROGRAM",
+    image: donate,
+  },
+  {
+    id: 25,
+    title: "Clothing Donation Campaign",
+    category: "DONATE PROGRAM",
+    image: donatetwo,
+  },
+  {
+    id: 26,
+    title: "Educational Materials Donation",
+    category: "DONATE PROGRAM",
+    image: donatethree,
+  },
+];
 
   const [activeCategory, setActiveCategory] = useState<string>("SCHOLARSHIP");
   const [currentPage, setCurrentPage] = useState<number>(1);
